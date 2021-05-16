@@ -1,0 +1,3 @@
+$(".ads-topright01").append('\
+	<div class="ads-box"><a href="//ad.yonhapnews.co.kr/RealMedia/ads/click_lx.ads/www.yonhapnews.co.kr/bulletin/74904880/Top1/OasDefault/nanumlotto_120106_bulletin_Top/img.js.txt/31663031303135363630373033376230" target="_new" rel="nofollow">\
+	<img src="//img.yna.co.kr/ad/kr/20210405/20210405092308_ad.png" border="0"></a></div>');

@@ -1,0 +1,628 @@
+//jQuery cookie
+!function(e){"function"==typeof define&&define.amd?define(["jquery"],e):"object"==typeof exports?e(require("jquery")):e(jQuery)}(function(e){var n=/\+/g;function o(e){return t.raw?e:encodeURIComponent(e)}function i(e){return o(t.json?JSON.stringify(e):String(e))}function r(o,i){var r=t.raw?o:function(e){0===e.indexOf('"')&&(e=e.slice(1,-1).replace(/\\"/g,'"').replace(/\\\\/g,"\\"));try{return e=decodeURIComponent(e.replace(n," ")),t.json?JSON.parse(e):e}catch(e){}}(o);return e.isFunction(i)?i(r):r}var t=e.cookie=function(n,c,u){if(void 0!==c&&!e.isFunction(c)){if("number"==typeof(u=e.extend({},t.defaults,u)).expires){var a=u.expires,d=u.expires=new Date;d.setTime(+d+864e5*a)}return document.cookie=[o(n),"=",i(c),u.expires?"; expires="+u.expires.toUTCString():"",u.path?"; path="+u.path:"",u.domain?"; domain="+u.domain:"",u.secure?"; secure":""].join("")}for(var f,p=n?void 0:{},s=document.cookie?document.cookie.split("; "):[],m=0,v=s.length;m<v;m++){var x=s[m].split("="),k=(f=x.shift(),t.raw?f:decodeURIComponent(f)),l=x.join("=");if(n&&n===k){p=r(l,c);break}n||void 0===(l=r(l))||(p[k]=l)}return p};t.defaults={},e.removeCookie=function(n,o){return void 0!==e.cookie(n)&&(e.cookie(n,"",e.extend({},o,{expires:-1})),!e.cookie(n))}});
+
+//Date.prototype
+//jQuery DefaultSetting
+//jQuery Extention
+
+//_now
+//_lib
+//_url
+//_param
+//_storage
+//_ars
+//_serach
+//_auto
+//_member
+//_weather
+
+//Date.prototype
+Date.prototype.Format = function( str ){
+    var date = this;
+    return str.replace(/%(Y|y|n|m|d|j|a|A|g|G|h|H|i|s|DD|ll|D|l|%)/g, function( word ){
+        switch( word ){
+            case "%%": return '%'; break;
+            case "%Y": return date.getFullYear(); break;
+            case "%y": return String(date.getFullYear()).substring(2,4); break;
+            case "%n": return Number(date.getMonth())+1; break;
+            case "%m": return (date.getMonth() < 9 ? "0" : "" )+(date.getMonth()+1); break;
+            case "%d": return (date.getDate() < 10 ? "0" : "" )+date.getDate(); break;
+            case "%j": return date.getDate(); break;
+            case "%a": return (date.getHours() < 12 ? "am":"pm"); break;
+            case "%A": return (date.getHours() < 12 ? "오전":"오후"); break;
+            case "%g": return (date.getHours() < 12 ? date.getHours() : Number(date.getHours())-12); break;
+            case "%G": return date.getHours(); break;
+            case "%h": var tmp = (date.getHours() < 12 ? date.getHours() : Number(date.getHours())-12); return (tmp < 10 ? "0":"" )+tmp; break;
+            case "%H": return (date.getHours() < 10 ? "0" : "" )+date.getHours(); break;
+            case "%i": return (date.getMinutes() < 10 ? "0" : "" )+date.getMinutes(); break;
+            case "%s": return (date.getSeconds() < 10 ? "0" : "" )+date.getSeconds(); break;
+            case "%D": return ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"][date.getDay()]; break;
+            case "%l": return ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"][date.getDay()]; break;
+            case "%DD": return ["일","월","화","수","목","금","토"][date.getDay()]; break;
+            case "%ll": return ["일요일","월요일","화요일","수요일","목요일","금요일","토요일"][date.getDay()]; break;
+            default : return word;
+        }
+    });
+};
+
+Date.strToDate = function( sendDate ) {
+    var type1 = /^[12][0-9]{3}[01][0-9][0-3][0-9]/g;
+    var type2 = /^[12][0-9]{3}[01][0-9][0-3][0-9][0-2][0-9][0-6][0-9]$/g;
+    var type3 = /^[12][0-9]{3}[01][0-9][0-3][0-9][0-2][0-9][0-6][0-9][0-6][0-9]$/g;
+    var ret="";
+    if( type1.test( sendDate ) ){ ret = [ sendDate.substring(0,4),sendDate.substring(4,6),sendDate.substring(6,8)].join("/"); }
+    if( type2.test( sendDate ) ){ ret += " " + [ sendDate.substring(8,10),sendDate.substring(10,12),'00'].join(":"); }
+    else if( type3.test( sendDate ) ){ ret += " " + [ sendDate.substring(8,10),sendDate.substring(10,12),sendDate.substring(12,14)].join(":"); }
+    return ret.length > 0 ? new Date( ret ) : undefined;
+};
+
+Date.createToDate = function( createTime ) {
+   //example ( 20190520 16:49:08.877 );
+   if( /^([\d]{8}) ([\d:]{8}.[\d]{3})/g.test( createTime )) {
+       return Date.strToDate( createTime.replace(/[: ]/g,"").replace(/\.[\d]+/,"") );
+   }
+   return false;
+};
+
+Date.prototype.UTC = function() {
+    if( Date.UTC ) {
+        return new Date(Date.UTC(this.getFullYear(),this.getMonth(),this.getDate(),this.getHours(),this.getMinutes(),this.getSeconds()));
+    }
+    return this;
+};
+
+Date.prototype.Day = function( num ) {
+    if( !num ) { return this; };
+    return new Date( this.getTime() + 86400000 * num );
+}
+
+Date.lastDate =  function (y,m) {
+    var count = 31;
+    if (m == 2) { count = ((y % 4 == 0 && y % 100 != 0) || y % 400 == 0) ? 29 : 28; }
+    else if (m == 4 || m == 6 || m == 9 || m == 11) { count = 30; }
+    return count;
+};
+
+Date.prototype.Month = function( num ) {
+    if( !num ) { return this; };
+    var D = this;
+    var y = D.getFullYear();
+    var m = D.getMonth()+1;
+    var d = D.getDate();
+    var month = m + num;
+    var abs = Math.abs( month );
+    //+ or -
+    if( month > 0 ) {
+        y = y + ~~( ( month - 1 ) / 12 );
+        m = abs % 12 == 0 ? 12 : abs % 12;
+    }
+    else {
+        y = y + ~~( month / 12 ) - 1;
+        m = 12 - abs % 12;
+    }
+    //28~31day
+    var lastDate = Date.lastDate(y,m);
+    if( d > lastDate ) { d = lastDate }
+    return new Date( y + '/' + m + '/' + d );
+};
+
+Date.prototype.moveDay = function( num ) {
+    if( !num || num == 0 ) { return this; };
+    return new Date( this.getTime() + 86400000 * num );
+}
+Date.prototype.moveWeek = function( num ) {
+    if( !num ) { return this; };
+    return this.Day( 7 * num );
+};
+Date.prototype.nextWeek = function(num) { return this.moveWeek((num||1)*1); }
+Date.prototype.lastWeek = function(num) { return this.moveWeek((num||1)*-1); }
+Date.prototype.moveMonth = function( num ) {
+    if( !num ) { return this; };
+    var D = this;
+    var y = D.getFullYear();
+    var m = D.getMonth()+1;
+    var d = D.getDate();
+    var month = m + num;
+    var abs = Math.abs( month );
+    //+ or -
+    if( month > 0 ) {
+        y = y + ~~( ( month - 1 ) / 12 );
+        m = abs % 12 == 0 ? 12 : abs % 12;
+    }
+    else {
+        y = y + ~~( month / 12 ) - 1;
+        m = 12 - abs % 12;
+    }
+    //28~31day
+    var lastDate = Date.lastDate(y,m);
+    if( d > lastDate ) { d = lastDate }
+    var ret = new Date( y + '/' + m + '/' + d );
+    ret.setHours( D.getHours() );
+    ret.setMinutes( D.getMinutes() );
+    ret.setSeconds( D.getSeconds() );
+    return ret;
+};
+Date.prototype.nextMonth = function(num) { return this.moveMonth((num||1)*1); }
+Date.prototype.lastMonth = function(num) { return this.moveMonth((num||1)*-1); }
+Date.prototype.moveYear = function( num ) {
+    if( !num ) { return this; };
+    var D = this;
+    var y = D.getFullYear();
+    var m = D.getMonth()+1;
+    var d = D.getDate();
+    y = y + num;
+    y = y < 1970 ? 1970 : y; //after 1970
+    //28~31day
+    var lastDate = Date.lastDate(y,m);
+    if( d > lastDate ) { d = lastDate }
+    var ret = new Date( y + '/' + m + '/' + d );
+    ret.setHours( D.getHours() );
+    ret.setMinutes( D.getMinutes() );
+    ret.setSeconds( D.getSeconds() );
+    return ret;
+};
+Date.prototype.nextYear = function(num) { return this.moveYear((num||1)*1); }
+Date.prototype.lastYear = function(num) { return this.moveYear((num||1)*-1); }
+
+//jQuery DefaultSetting
+//$.ajaxSetup({cache:true});
+//$.support.cors = true;
+
+////jQuery Extention
+//$.fn.tmplLoop = function(options) {
+//    $(this).each(function(idx,el){
+//        var $el = $(el);
+//        var api = $el.data("api");
+//        var target = $el.data("target");
+//        if( $el.prop("tagName") == "SCRIPT" && api && target ) {
+//            var api = api.replace("=/\/","");
+//            _ars.req(api,function(data){
+//                $el.data("data",data);
+//                $el.tmpl(data.DATA).appendTo(target);
+//                if( options && $.isFunction(options.callback)) {
+//                    options.callback(data);
+//                }
+//            });
+//        }
+//    });
+//}
+//$(function(){ $(".dev-tmpl-loop").tmplLoop(); });
+
+//$.tmpl.func = {
+//    /*
+//    {{func(TITLE,"brtrim:prefix")}}
+//    {{func(IMG,"image(P2)")}}
+//    {{func(DATETIME,"dateFormat(%Y-%m-%d %H:%i)")}}
+//    */
+//    init : function(data,arr,value,funcs) {
+//        if( funcs && funcs.length > 0 ) {
+//            var funcs = funcs.split(":");
+//            //함수별 문자열 분리
+//            var splitedFunc = [];
+//            var tmp = "";
+//            for( var i = 0, fun, ilen = funcs.length; i < ilen; i++ ) {
+//                var fun = funcs[i];
+//                if( fun.indexOf("(") >= 0 ^ fun.indexOf(")") >= 0 ) {
+//                    if( tmp ) {
+//                        splitedFunc.push(tmp+":"+fun);
+//                    }
+//                    tmp = fun;
+//                }
+//                else {
+//                    tmp = "";
+//                    splitedFunc.push(fun);
+//                }
+//            }
+//            funcs = splitedFunc;
+//            //함수별 동작처리
+//            for( var i = 0, func, param, ilen = funcs.length; i<ilen; i++ ) {
+//                func = funcs[i];
+//                if(/^([a-zA-Z]+)\((.+)\)/.test(func)){
+//                    func = RegExp.$1;
+//                    param = RegExp.$2;
+//                }
+//                if( $.tmpl.func.hasOwnProperty( func ) ) {
+//                    value = $.tmpl.func[func](value,param) || value;
+//                }
+//                else if( func.indexOf(".")>=0) {
+//                    var funcName = func.split(".");
+//                    var f = window;
+//                    for( var j = 0, target, jlen = funcName.length; j<jlen; j++) {
+//                        target = funcName[j];
+//                        if( f && f.hasOwnProperty(target) ) {
+//                            f = f[target];
+//                        }
+//                        else {
+//                            f = null;
+//                            break;
+//                        }
+//                    }
+//                    if( f!= null ) {
+//                        value = f(value,param) || value;
+//                    }
+//                }
+//            }
+//        }
+//        arr.push(value);
+//    }
+//    , brtrim : function(str) {
+//        return (str?str:"").replace(/(\r|\n|<br\/?>)/g,"");
+//    }
+//    , strip : function(str) {
+//        return $.trim(str);
+//    }
+//    , html : function(str) {
+//        return _.unescape(str);
+//    }
+//    , prefix : function(str,param) {
+//        return (param + str).replace(/\"/g,"");
+//    }
+//    , image : function(str,param) {
+//        if( ["T2","P2","P4"].indexOf(param) >= 0 ) {
+//            str = str.replace("_T","_"+param);
+//        }
+//        return str;
+//    }
+//    , dateFormat : function(str,param) {
+//        var d = Date.strToDate(str.replace(/\"/g,""));
+//        if( d ) {
+//            str = d.Format(param);
+//        }
+//        return str;
+//    }
+//}
+//$.extend($.tmpl.tag, {
+//    "for": { _default: {$2: "var i=1;i<=1;i++"}, open: 'for ($2){', close: '};' }
+//    , "func" : { _default: {$1: "", $2 : ""}, open: '$.tmpl.func.init(this.data,__,$2);', close: '' }
+//});
+
+//_now
+var _now = new Date();
+
+//_lib
+var _lib = {
+    
+}
+
+//_url
+var _url = {
+    parameter : function(url) {
+        var idx = url.indexOf("?");
+        var s = url.substring(idx+1);
+        var list = s.split(/&+/);
+        var param = {};
+        for (var n in list) {
+            var m = list[n].split(/=/);
+            try {
+                if (m && m.length == 2) {
+                    var value = m[1].replace(/\+/g," ");
+                    param[m[0]] = decodeURIComponent(value);
+                }
+            } catch (e)
+            { }
+        }
+        return param;
+    }
+}
+
+//_param
+var _param = _url.parameter(location.search);
+
+//_storage
+var _storage = {
+    get : function( key ) {
+        var val = JSON.parse( localStorage.getItem( key ) );
+        return val ? val : false;
+    }
+    , set : function( key, val ) {
+        try {
+            localStorage.setItem( key, JSON.stringify(val) );
+            return true;
+        } catch(e) { return false; }
+    }
+    , has : function( key ) {
+        return Object.keys(localStorage).indexOf(key) > 0;
+    }
+    , del : function( key ) {
+        try {
+            localStorage.removeItem( key );
+            return true;
+        } catch( e ) { return false; }
+    }
+    , clear : function() { localStorage.clear(); }
+}
+
+//_cookie (직접구현부 삭제, $.cookie를 래핑해서 사용 하는것으로 변경)
+var _cookie = {
+    get : function(name){
+        return $.cookie(name);
+    }
+    , set : function(name,value,options){
+    	$.cookie(name,value,$.extend({},options));
+    }
+    , del : function(name,options) {
+    	$.removeCookie(name,$.extend({},options));
+    }
+}
+
+//_ars
+var _ars = {
+    now : _now.Format("%Y%m%d")
+    , url : "https://ars.yna.co.kr/api/v2/"
+    , req : function(url,callback) {
+        $.ajax({ url : _ars.url + url, success : callback });
+    }
+    , topNews : function(callback,params) {
+        var _default = { "id" : "631", "body" : "Y", "total" : "Y", "count" : "300", "date" : _ars.now };
+        _ars.req('hedit.date?' + $.param($.extend(_default,params)), callback);
+    }
+    , hotNews : function(callback,params) {
+        var _default = { "id" : "659", "body" : "Y", "total" : "Y", "count" : "300", "date" : _ars.now };
+        _ars.req('hedit.date?' + $.param($.extend(_default,params)), callback);
+    }
+    , headlines : function(callback,params) {
+        var _default = { "id" : "631,632,644", "body" : "Y", "total" : "Y", "count" : "300", "date" : _ars.now };
+        _ars.req('hedit.date?' + $.param($.extend(_default,params)), callback);
+    }
+    , breakNews : function(callback,params) {
+        var _default = { "lang" : "KR", "urgency" : "0,1,2", "div" : "9001071", "before" : "7", "body" : "N", "total" : "Y", "count" : "100" };
+        _ars.req('urgency.date?' + $.param($.extend(_default,params)), callback);
+    }
+    , autoComplete : function(callback,params) {
+        var _default = { "q" : "", "l" : 10 };
+        _ars.req('ac_keyword?' + $.param($.extend(_default,params)), callback);
+    }
+    , weather : function(callback) {
+        _ars.req('weather.now', callback);
+    }
+    , stock : function(callback) {
+        _ars.req('svc.stock', callback);
+    }
+    , exchange : function(callback,params) {
+        var _default = { "names" : "USD,JPY" };
+        _ars.req('svc.exchange?' + $.param($.extend(_default,params)), callback);
+    }
+}
+
+//_search
+var _search = {
+    uid : null
+    , api : "search.asis"
+    , data : null
+    , options : { channel : "basic_kr", ctype : "A,P,G,M,I", lang : "KR", query : "", from : "", to : "", page_no : 1, page_size : 10, sort : "date", scope : "" }
+    , getOption : function(key) {
+        return _search.options[key];
+    }
+    , setOption : function(key,val) {
+        if( key && val && key != "" ) {
+           _search.options[key] = $.trim(val);
+        }
+        return _search;
+    }
+    , _options_type : {
+        ctype : { "A"  : "기사", "P"  : "사진", "PY" : "내신사진", "PF" : "외신사진", "G"  : "그래픽", "R"  : "보도자료", "E"  : "축제", "B"  : "블로그", 
+        	"Q"  : "퀵서치", "H"  : "인물", "I"  : "이슈", "M"  : "영상", "F"  : "외신기사", "MA"  : "의료-국내뉴스", "MF" : "의료-해외뉴스", "MP"  : "의료-보도자료", 
+        	"MY" : "의료-학회소식", "MB"  : "의료-경영정보", "MC" : "의료-전문가칼럼", "MI" : "의료-인터뷰", "HA" : "한민족 기사", "HP" : "한민족 사진 ", "HM" : "한민족 영상", "PN" : "공시", "N"  : "방송수신록", "W"  : "외부데이터" },
+        sort : {"date":"최신순","weight":"정확도순"},
+        scope : {"title":"제목","text_body":"본문"},
+        lang : ["KR","EN","AR","JP","CK","SP","FR"],
+        result_stype : ["json", "json_text", "xml"]
+    }
+    , getChannel : function(){ return _search.getOption("channel"); }
+    , setChannel : function(val){ return _search.setOption("channel",val); }
+    , getCtype : function(){ return _search.getOption("ctype"); }
+    , setCtype : function(val){ 
+        if( val && !$.isArray(val) ) {
+            val = val.split(",");
+        }
+        var isOk = true; 
+        for( var i=0, ilen=val.length;i<ilen;i++){
+           isOk = _.contains(_.keys(_search._options_type.ctype),val[i]);
+        }
+
+        if( isOk ) {
+            return _search.setOption("ctype",val.join(",")); 
+        }
+        else {
+            console.error("wrong search parameter",_search._options_type.ctype);
+        }
+    }
+    , getLang : function(){ return _search.getOption("lang"); }
+    , setLang : function(val){ 
+        if( _.contains(_search._options_type.lang,val) ) {
+            return _search.setOption("lang",val); 
+        }
+        else {
+            console.error("wrong search parameter",_search._options_type.lang);
+        }
+    }
+    , getQuery : function(){ return _search.getOption("query"); }
+    , setQuery : function(val){ return _search.setOption("query",val); }
+    , getFrom : function(){ return _search.getOption("from"); }
+    , setFrom : function(val){ return _search.setOption("from",val.replace(/[^0-9]+/g, '') || ""); }
+    , getTo : function(){ return _search.getOption("to"); }
+    , setTo : function(val){ return _search.setOption("to",val.replace(/[^0-9]+/g, '') || ""); }
+    , getPageNo : function(){ return _search.getOption("page_no"); }
+    , setPageNo : function(val){ return _search.setOption("page_no",val); }
+    , getPageSize : function(){ return _search.getOption("page_size"); }
+    , setPageSize : function(val){ _search.setOption("page_size",val); }
+    , getSort : function(){ return _search.getOption("sort"); }
+    , setSort : function(val){ 
+        if( _.contains(_.keys(_search._options_type.sort),val) ) {
+        	return _search.setOption("sort",val); 
+        }
+        else {
+            console.error("wrong parameter",_search._options_type.sort);
+        }
+    }
+    , getScope : function(){ return _search.getOption("scope"); }
+    , setScope : function(val){ 
+        if( _.contains(_.keys(_search._options_type.scope),val) ) {
+            return _search.setOption("scope",val); 
+        }
+        else {
+            console.error("wrong parameter",_search._options_type.scope);
+        }
+    }
+    , getWriter : function(){ return _search.getOption("writer") }
+    , setWriter : function(val){ _search.getOption("writer",val) }
+    , getDiv : function(){ return _search.getOption("div_code") }
+    , setDiv : function(val){ return _search.setOption("div_code",val) }
+    , setUid : function(data) {
+        if( !_search.uid ) {
+            //find uid
+            var uid;
+            for( var key in data ) {
+                if(data[key].uid) {
+                    uid = data[key].uid;
+                    break;
+                }
+            }
+            //set uid to cookie
+            if( uid ) {
+                var domain = document.location.hostname;
+                var n = domain.indexOf('.');
+                if (n > 0) { domain = domain.substr(n); }
+                _cookie.set("search_uid", escape(uid), { domain : domain, path : "/" })
+                _search.uid = uid; 
+            }
+        }  
+    }
+    , preCallback : function(data) {
+        _search.data = data;
+        _search.setUid(data);
+        _search.callback(data);
+    }
+    , callback : function(data) { console.log(data); }
+    , next : function() {
+        _search.setPageNo( (_search.getPageNo()*1 + 1) ).req();
+    }
+    , req : function(params,callback) {
+        if( $.isFunction(callback) ) { _search.callback = callback };
+        _ars.req(_search.api + "?" + $.param($.extend(_search.options,params)),_search.preCallback); 
+    }
+}
+
+//_auto 자동완성 처리 (IE9대응 쿠키처리)
+var _auto = {
+    cookie_name : "AC_FLAG"
+    , param : { q : "", l : 10 }
+    , on : function() { _cookie.set(_auto.cookie_name,true); }
+    , off : function() { _cookie.del(_auto.cookie_name); }
+    , check : function() { return _cookie.get(_auto.cookie_name) == "true"; }
+    , setCount : function(count) { 
+    	if( _.isNumber(count) && count > 0 ) {
+    		_auto.param.l = count;
+    	}
+    }
+    , req : function(keyword,callback) {
+        if( keyword && _.isFunction(callback) && _auto.check() ) {
+        	//디바운싱 처리
+            clearTimeout(_auto.timer);
+            _auto.timer = setTimeout(function(){
+                _ars.autoComplete(callback, $.extend(_auto.param,{q:keyword}));
+                _auto.timer = 0;
+            }, 300);
+        }
+    }
+}
+
+//_member 로그인/로그아웃 확인 및 처리
+var _member = {
+    isLogined : function() {
+        return _cookie.get("YNA_MEMBER_STAUS") === "YNA_MEMBER";
+    }
+    , logoutCallback : function() {
+        location.reload();
+    }
+    , logout : function(callback) {
+        if( _.isFunction(callback) ) {
+            _member.logoutCallback(callback);
+        }
+        $.ajax({
+            type: "GET",
+            url: "//uas.yna.co.kr/member/api/logout",
+            async: false,
+            dataType : "jsonp",
+            contentsType: "application/json",
+            jsonpCallback : "_member.logoutCallback"
+        });
+    }
+}
+
+//날씨 데이터 한꺼번에 수신(now, week)
+var _weather = {
+    requestTime : new Date()
+    , areaCode : {
+        "seoul" : "1111000000", //서울
+        "busan" : "2611000000", //부산
+        "daegu" : "2711000000", //대구
+        "incheon" : "2811000000", //인천
+        "gwangju" : "2911000000", //광주
+        "daejeon" : "3011000000", //대전
+        "ulsan" : "3111000000", //울산
+        "sejong" : "3600000000", //세종
+        "gangneung" : "4215000000", //강릉
+        "jeju" : "5011000000", //제주도
+        "gg" : "4100000000", //경기도
+        "gw" : "4200000000", //강원도
+        "cb" : "4300000000", //충청북도
+        "cn" : "4400000000", //충청남도
+        "jb" : "4500000000", //전라북도
+        "jn" : "4600000000", //전라남도
+        "kb" : "4700000000", //경상북도 
+        "kn" : "4800000000" //경상남도 
+    }
+	, load : function(callback) {
+        //deferred 요청
+        $.when(
+            $.ajax({url:"//ars.yna.co.kr/api/v2/weather.now"}),
+            $.ajax({url:"//ars.yna.co.kr/api/v2/weather.week"})
+        ).done(function (now, week) {
+            var data = {};
+            //현재날씨 id 별 map 형식을 데이터 구조변환
+            $.each(now[0].region,function(idx,item){ data[item.info.id] = item; });
+            //이번주 날씨예보 id 별 map 에 forecast 이름으로 매핑 
+            $.each(week[0].body.region,function(idx,item){ if( data[item.id] ) { data[item.id].forecast = item.weather; } });
+            //날씨정보 저장 및 요청 시간 저장
+            _weather.data = data;
+            _weather.requestTime = new Date();
+            if($.isFunction(callback)) {
+                callback(data);
+            }
+        }).fail(function(e){
+            if($.isFunction(callback)) {
+                callback(e);
+            }
+        });
+    }
+    , getCityData : function(city, callback ) {
+        var cities = $.isArray(city) ? city : [city];
+        var data = [];
+        $.each(cities, function(idx,city){
+            var cityData = {};
+            if( _weather.areaCode[city] ) {
+                city = _weather.areaCode[city];
+            }
+            if( _weather.data[city] ) {
+                cityData = _weather.data[city];
+            }
+            data.push(cityData);
+        });
+        callback(data);
+    }
+    , timeCheck : function() {
+		//10분 캐시
+        return (new Date().getTime() - _weather.requestTime.getTime()) < 600000;
+    }
+    , get : function(city, callback) {
+        if( _weather.data && _weather.timeCheck() ) {
+            _weather.getCityData(city,callback);
+        }
+        else {
+            _weather.load(function(data){
+                _weather.getCityData(city,callback);
+            });
+        }
+    }
+}

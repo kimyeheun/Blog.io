@@ -1,0 +1,112 @@
+/*
+ *
+ *  http://www.JSON.org/json2.js
+ *  2011-02-23
+ *
+ *  Math.uuid.js (v1.4)
+ *  http://www.broofa.com
+ *  mailto:robert@broofa.com
+ *
+ *  Copyright (c) 2010 Robert Kieffer
+ *  Dual licensed under the MIT and GPL licenses.
+ **/
+var n = void 0,
+    o = null,
+    JSON;
+JSON || (JSON = {});
+(function() {
+    function h(a) {
+        return 10 > a ? "0" + a : a
+    }
+
+    function c(a) {
+        d.lastIndex = 0;
+        return d.test(a) ? '"' + a.replace(d, function(a) {
+            var b = j[a];
+            return "string" === typeof b ? b : "\\u" + ("0000" + a.charCodeAt(0).toString(16)).slice(-4)
+        }) + '"' : '"' + a + '"'
+    }
+
+    function e(j, d) {
+        var k, l, f, h, p = a,
+            m, i = d[j];
+        i && "object" === typeof i && "function" === typeof i.toJSON && (i = i.toJSON(j));
+        "function" === typeof g && (i = g.call(d, j, i));
+        switch (typeof i) {
+            case "string":
+                return c(i);
+            case "number":
+                return isFinite(i) ? "" + i : "null";
+            case "boolean":
+            case "null":
+                return "" +
+                    i;
+            case "object":
+                if (!i) return "null";
+                a += b;
+                m = [];
+                if ("[object Array]" === Object.prototype.toString.apply(i)) {
+                    h = i.length;
+                    for (k = 0; k < h; k += 1) m[k] = e(k, i) || "null";
+                    f = 0 === m.length ? "[]" : a ? "[\n" + a + m.join(",\n" + a) + "\n" + p + "]" : "[" + m.join(",") + "]";
+                    a = p;
+                    return f
+                }
+                if (g && "object" === typeof g) {
+                    h = g.length;
+                    for (k = 0; k < h; k += 1) "string" === typeof g[k] && (l = g[k], (f = e(l, i)) && m.push(c(l) + (a ? ": " : ":") + f))
+                } else
+                    for (l in i) Object.prototype.hasOwnProperty.call(i, l) && (f = e(l, i)) && m.push(c(l) + (a ? ": " : ":") + f);
+                f = 0 === m.length ? "{}" : a ? "{\n" + a + m.join(",\n" +
+                    a) + "\n" + p + "}" : "{" + m.join(",") + "}";
+                a = p;
+                return f
+        }
+    }
+    "function" !== typeof Date.prototype.toJSON && (Date.prototype.toJSON = function() {
+        return isFinite(this.valueOf()) ? this.getUTCFullYear() + "-" + h(this.getUTCMonth() + 1) + "-" + h(this.getUTCDate()) + "T" + h(this.getUTCHours()) + ":" + h(this.getUTCMinutes()) + ":" + h(this.getUTCSeconds()) + "Z" : o
+    }, String.prototype.toJSON = Number.prototype.toJSON = Boolean.prototype.toJSON = function() {
+        return this.valueOf()
+    });
+    var f = /[\u0000\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/g,
+        d = /[\\\"\x00-\x1f\x7f-\x9f\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/g,
+        a, b, j = {
+            "\u0008": "\\b",
+            "\t": "\\t",
+            "\n": "\\n",
+            "\u000c": "\\f",
+            "\r": "\\r",
+            '"': '\\"',
+            "\\": "\\\\"
+        },
+        g;
+    "function" !== typeof JSON.stringify && (JSON.stringify = function(j, c, d) {
+        var l;
+        b = a = "";
+        if ("number" === typeof d)
+            for (l = 0; l < d; l += 1) b += " ";
+        else "string" === typeof d && (b = d);
+        if ((g = c) && "function" !== typeof c && ("object" !== typeof c || "number" !== typeof c.length)) throw Error("JSON.stringify");
+        return e("", {
+            "": j
+        })
+    });
+    "function" !== typeof JSON.parse && (JSON.parse = function(a, b) {
+        function j(a, g) {
+            var c, d, f = a[g];
+            if (f && "object" === typeof f)
+                for (c in f) Object.prototype.hasOwnProperty.call(f, c) && (d = j(f, c), d !== n ? f[c] = d : delete f[c]);
+            return b.call(a, g, f)
+        }
+        var g, a = "" + a;
+        f.lastIndex = 0;
+        f.test(a) && (a = a.replace(f, function(a) {
+            return "\\u" + ("0000" + a.charCodeAt(0).toString(16)).slice(-4)
+        }));
+        if (/^[\],:{}\s]*$/.test(a.replace(/\\(?:["\\\/bfnrt]|u[0-9a-fA-F]{4})/g, "@").replace(/"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g,
+            "]").replace(/(?:^|:|,)(?:\s*\[)+/g, ""))) return g = eval("(" + a + ")"), "function" === typeof b ? j({
+            "": g
+        }, "") : g;
+        throw new SyntaxError("JSON.parse");
+    })
+})();

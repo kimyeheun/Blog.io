@@ -1,0 +1,128 @@
+/*
+ any questions? ask bjh!
+ 2018-11-18 ?mobile => #mobile 변경
+ */
+var Redirect = {
+    cid : /^.*([A-Z]{3}[0-9]{17}).*$/.test(document.location.toString()) ? document.location.toString().replace(/^.*([A-Z]{3}[0-9]{17}).*$/, '$1') : '',
+    issue : /^.*(IPT[0-9]{17}).*$/.test(document.location.toString()) ? document.location.toString().replace(/^.*(IPT[0-9]{17}).*$/, '$1') : '',
+    param : document.location.search.replace(/[^\?&=]+=(IPT[0-9]{17}|[A-Z]{3}[0-9]{17})/g, '').replace(/^[\?&]+|&*$/g,''),
+    notMobile: /.*(SHW-M180|SHW-M380|SHV-E140|SHV-E150|SHV-E230|Nexus 7).*/,
+    mobileAgent: /.*(iphone|bada|android).*/i,
+    isMobile: function(ua)
+    {
+        var ua = ua || window.navigator.userAgent;
+        return Redirect.mobileAgent.test(ua) && !Redirect.notMobile.test(ua) && !Redirect.isIgnore();
+    },
+    mobileStat: function(param,ua)
+    {
+        if (!param)
+            return;
+
+        if (Redirect.isMobile(ua))
+        {
+            param = param.replace('{cid}', Redirect.cid).replace('{issue}', Redirect.issue).replace('{param}', Redirect.param);
+            param += '&' + (new Date().getTime());
+            // http://m.yna.co.kr/kr/stat.html
+            var url = '//m.yna.co.kr/' + '?' + param.replace(/&+/g, '&');
+            (new Image()).src = url;
+        }
+    },
+    checkUrl:function(url,ua,hash,pathName){
+        var	urlText = url.replace('{cid}', Redirect.cid).replace('{issue}', Redirect.issue).replace('{param}', Redirect.param);
+        var urlIndex		= urlText.indexOf('.');
+        var urlLength		= urlText.length;
+        var setLocation		= urlText.substr(urlIndex,urlLength);
+        var gubunStr		= urlText.substr(0,urlIndex).split("//")[1];
+        if (!url){return;}
+        Redirect.checkIgnore();
+        if( hash == false ){  // 모바일에서PC 보기로 접근항 사용자는 제외한다.
+            if (Redirect.isMobile(ua)){   //PC 모바일 분기;
+                var returnStr="";
+                switch(gubunStr){
+                    case 'www':
+                        returnStr = "//m"+setLocation+pathName;
+                        break;
+
+                    case 'en':
+                        returnStr = "//m-en"+setLocation+pathName;
+                        break;
+
+                    case 'cn':
+                        returnStr = "//m-cn"+setLocation+pathName;
+                        break;
+
+                    case 'cb':
+                        returnStr = "//m-cb"+setLocation+pathName;
+                        break;
+
+                    case 'jp':
+                        returnStr = "//m-jp"+setLocation+pathName;
+                        break;
+
+                    case 'ar':
+                        returnStr = "//m-ar"+setLocation+pathName;
+                        break;
+
+                    case 'sp':
+                        returnStr = "//m-sp"+setLocation+pathName;
+                        break;
+
+                    case 'fr':
+                        returnStr = "//m-fr"+setLocation+pathName;
+                        break;
+                    default:
+                        break;
+                }
+                window.location.href = returnStr;
+            }
+        }
+    },
+    check: function(url,ua){
+        if (!url)
+            return;
+        if( !/^https:\/\/.*/.test(url) ){
+            if( /^http:\/\/.*/.test(url) ) url = url.replace('http://', 'https://');
+            else url = 'https://' + url;
+        }
+        Redirect.checkIgnore();
+        if (Redirect.isMobile(ua) )
+        {
+            url = url.replace('{cid}', Redirect.cid).replace('{issue}', Redirect.issue).replace('{param}', Redirect.param);
+            //if( url.indexOf('#mobile') < 0 ) url += '#mobile';
+            url = url.replace(/&+/g, '&').replace(/\?$/,"");
+            document.location.replace(url);
+            /*
+            if (url.indexOf('?') < 0)
+                url += '?mobile';
+            else
+                url += (/.*\?$/.test(url) ? 'mobile' : '&mobile');
+            url = url.replace(/&+/g, '&');
+            document.location.replace(url);
+            */
+        }
+    },
+    checkIgnore:function()
+    {
+        if( (document.location.hash.split(/[\#&]/).join('^') + '^').indexOf('^mobile^') >= 0 ) {
+            Redirect.setIgnore('Y');
+        }
+    },
+    removeIgnore: function()
+    {
+        var d = new Date();
+        d.setDate(d.getDate()-1);
+        Redirect.setIgnore('N', d.toGMTString());
+    },
+    setIgnore: function(flag,expires)
+    {
+        var cook = "ignoreRedirect=" + (flag ? flag : "Y") + "; path=/; domain=" + document.location.host.replace(/^.*\.(yonhapnews.co.kr|yna.co.kr)$/, '$1') + ";";
+        if (expires)
+            cook += " expires=" + expires;
+        console.log(cook);
+        document.cookie = cook;
+    },
+    isIgnore: function()
+    {
+        return document.cookie.indexOf("ignoreRedirect=Y") >= 0;
+    }
+};

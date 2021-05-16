@@ -1,0 +1,12 @@
+/** 광고 **/
+/* 광고 라벨 공용 */
+.video_item.ad_slot .thumb .ad_label{position:absolute;top:0;width:21px;height:15px;overflow:hidden;font-family:HelveticaNeue-Regular,AppleSDGothicNeo-Regular,"Malgun Gothic","맑은 고딕",sans-serif !important;font-size:10px;font-style:normal;font-weight:700;line-height:14px;letter-spacing:-.5px;text-align:center;text-transform:uppercase;z-index:100}
+.video_item.ad_slot .thumb:after,
+.video_item.ad_slot .thumb .play_time{display:none !important}
+/* 색상 타입 */
+.video_item.ad_slot .thumb .ad_label.type_b{color:#fff;background:rgba(0,0,0,.2)}
+.video_item.ad_slot .thumb .ad_label.type_w{color:#000;background:rgba(255,255,255,.35)}
+/* 크기 타입 */
+.video_item.ad_slot .thumb .ad_label.size_s{transform:scale(.8);-webkit-transform:scale(.8);transform-origin:0 0;-webkit-transform-origin:0 0}
+/* 광고 출처 공용 */
+.video_item.ad_slot .source{overflow:hidden;color:rgba(0,0,0,.38);font-size:14px;line-height:20px;white-space:nowrap;text-overflow:ellipsis;margin-top:4px}

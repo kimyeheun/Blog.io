@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<!-- saved from url=(0111)https://www.mediacategory.com/servlet/adBanner?s=31784&iwh=300_250&igb=74&cntad=1&cntsr=1&passback=mediamixerno -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+    <title>criteo</title>
+
+    
+    <meta name="referrer" content="no-referrer-when-downgrade">
+</head>
+<body style="margin:0;padding:0;text-align:center;" marginwidth="0" marginheight="0">
+
+<!-- BEGIN CRITEO CDB -->
+<script async="async" type="text/javascript" src="./publishertag.js.다운로드"></script>
+<div id="criteo_slot_1414391"></div>
+<script>
+    var siteURL = "www.yna.co.kr";
+    var loc = decodeURIComponent("https%3A%2F%2Fwww.mediacategory.com%2Fservlet%2FadBanner%3Ffrom%3D%26amp%3Bs%3D31784%26amp%3Biwh%3D300_250%26amp%3Bigb%3D74%26amp%3Bcntad%3D1%26amp%3Bcntsr%3D1");
+    var zoneid = "1414391";
+    var passback_url = decodeURIComponent("https%3A%2F%2Fwww.mediacategory.com%2Fservlet%2FadBanner%3Fs%3D31784%26iwh%3D300_250%26igb%3D74%26cntad%3D1%26cntsr%3D1%26passback%3Dcriteono");
+    var elpwidth = "300";
+    var elpheight = "250";
+
+    !function () {
+        /* CONFIG CRITEO ZONE ID, SLOT DIV ID, PASSBACK */
+
+        var criteoZoneId = zoneid;
+        var criteoSlotId = "criteo_slot_" + zoneid;
+        var passback = function () {
+            /* CONFIGURE YOUR PASSBACK CODE HERE */
+            var mob_iframe = document.createElement("iframe");
+            mob_iframe.src = passback_url;
+            mob_iframe.width = elpwidth;
+            mob_iframe.height = elpheight;
+            mob_iframe.scrolling = "no";
+            mob_iframe.frameBorder='0';
+            mob_iframe.marginWidth='0';
+            mob_iframe.marginHeight='0';
+            document.getElementsByTagName("body")[0].appendChild(mob_iframe);
+        }
+
+        var CriteoAdUnits = {"placements": [{"slotid": criteoSlotId, "zoneid": criteoZoneId}]};
+        window.Criteo = window.Criteo || {};
+        window.Criteo.events = window.Criteo.events || [];
+        var processCdbBid = function () {
+            var bids = Criteo.GetBidsForAdUnit(criteoSlotId);
+            if (bids.length > 0) {
+                var bidFound = bids[0];
+                Criteo.RenderAd({bidId: bidFound.id, containerId: bidFound.impressionId});
+            } else {
+                passback();
+            }
+        };
+        Criteo.events.push(function () {
+            Criteo.RequestBids(CriteoAdUnits, processCdbBid, 1200);
+        });
+    }();
+</script>
+<!-- END CRITEO CDB -->
+
+
+<iframe src="./adBanner(5).html" width="300" height="250" scrolling="no" frameborder="0" marginwidth="0" marginheight="0"></iframe></body></html>

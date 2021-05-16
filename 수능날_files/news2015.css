@@ -1,0 +1,1218 @@
+@charset "utf-8";
+
+/*************************************************
+연합뉴스 (www.yonhapnews.co.kr)
+2014.01
+commnet : default
+*************************************************/
+
+@import url("common2015.css?v=20201023_1803"); /* 공통:뉴스,포토,기타 사이트 */
+@import url("common2015.v1.css?v=20200102_1800");
+@import url("special.css?v=20200103_1802"); /* 특집코너 */
+
+/* GNB */
+#gnb{}
+.gnb{position:relative;z-index:800;height:43px;background:url(//img.yonhapnews.co.kr/basic/svc/14_images/bg_box_01.gif) 0 bottom repeat-x #fafafa;border:1px solid #ddd;border-top:1px solid #989898;border-bottom:none;padding:0 9px;margin-bottom:9px;}
+.gnb li .gnb-1dep,
+.gnb li.last .gnb-1dep{display:block;float:left;padding:0 7px;height:28px;padding-top:13px;vertical-align:middle;border-left:1px solid #fafafa;border-right:1px solid #fafafa;}
+.gnb li{float:left;}
+.gnb li .gnb-1dep:hover,
+.gnb li .gnb-1dep:focus,
+.gnb li .gnb-1dep.on{border-left:1px solid #ddd;border-right:1px solid #ddd;background:#eee;}
+.gnb li.current a{border-left:1px solid #ddd;border-right:1px solid #ddd;background:#eee;color:#555;font-weight:bold;}
+.gnb .gnb-sub{position:absolute;top:40px;height:25px;padding:13px 10px 0 10px;}
+.gnb .gnb-sub li{padding:0 3px;float:none;display:inline;}
+.gnb .gnb-sub li .on{font-weight:bold;}
+.gnb .gnb-sub li a{color:#555;}
+
+.gnb ul{white-space:nowrap;}
+.gnb li.last{float:right;}/* 비주얼뉴스 */
+.gnb li.last a.gnb-1dep:hover,
+.gnb li.last a.gnb-1dep:focus,
+.gnb li.last a.gnb-1dep.on{border-left:1px solid #fafafa;border-right:1px solid #fafafa;background:url(//img.yonhapnews.co.kr/basic/svc/14_images/arr3_7x4_cccccc.gif) center 32px no-repeat #fafafa;}
+.gnb .last-sub{position:absolute;top:41px;right:-1px;width:97px;padding:7px 0;text-align:right;border:1px solid #ccc;background:#fff;}
+.gnb .last-sub li{float:none; padding:6px 18px;}
+
+.gnb .gnb-sub,
+.gnb .last-sub{display:none;z-index:801;}
+
+/* 톱뉴스 아이콘 */
+.icon-white a,
+.icon-black a{display:inline-block;vertical-align:top;height:17px;line-height:18px;.line-height:17px;margin-right:-3px;padding:2px 5px 0 26px;background-position:6px 4px;background-repeat:no-repeat;text-decoration:none;font-size:11px;}
+
+.icon-white a{border:1px solid #eee;background-color:#fff;color:#2556a7 !important;}
+.icon-black a{border:1px solid #101118;background-color:#000;font-weight:normal;color:#d0d1d5 !important;}
+
+.top-news .tl-wrap .icon-wrap.icon-white .icon_more,
+.top-news .tl-wrap .icon-wrap.icon-black .icon_more,
+.lead-wrap .icon-wrap .icon_more,
+.icon-wrap.icon-white .icon_more,
+.icon-wrap.icon-black .icon_more{background-image:url(//img.yonhapnews.co.kr/basic/svc/14_images/icon_topnews_more.gif);}
+
+.top-news .tl-wrap .icon-wrap.icon-white .icon_photo,
+.top-news .tl-wrap .icon-wrap.icon-black .icon_photo,
+.lead-wrap .icon-wrap .icon_photo,
+.icon-wrap.icon-white .icon_photo,
+.icon-wrap.icon-black .icon_photo{background-image:url(//img.yonhapnews.co.kr/basic/svc/14_images/icon_topnews_photomovie.gif);}
+
+.top-news .tl-wrap .icon-wrap.icon-white .icon_inter,
+.top-news .tl-wrap .icon-wrap.icon-black .icon_inter,
+.lead-wrap .icon-wrap .icon_inter,
+.icon-wrap.icon-white .icon_inter,
+.icon-wrap.icon-black .icon_inter{background-image:url(//img.yonhapnews.co.kr/basic/svc/14_images/icon_topnews_interactive.gif);}
+
+.top-news .tl-wrap .icon-wrap.icon-white .icon_onair,
+.top-news .tl-wrap .icon-wrap.icon-black .icon_onair,
+.lead-wrap .icon-wrap .icon_onair,
+.icon-wrap.icon-white .icon_onair,
+.icon-wrap.icon-black .icon_onair{background-image:url(//img.yonhapnews.co.kr/basic/svc/14_images/icon_topnews_onair.gif);}
+
+.top-news .tl-wrap .icon-wrap.icon-white .icon_graphic,
+.top-news .tl-wrap .icon-wrap.icon-black .icon_graphic,
+.lead-wrap .icon-wrap .icon_graphic,
+.icon-wrap.icon-white .icon_graphic,
+.icon-wrap.icon-black .icon_graphic{background-image:url(//img.yonhapnews.co.kr/basic/svc/14_images/icon_topnews_graphic.gif);}
+
+.top-news .tl-wrap .icon-wrap.icon-white .icon_issue,
+.top-news .tl-wrap .icon-wrap.icon-black .icon_issue,
+.lead-wrap .icon-wrap .icon_issue,
+.icon-wrap.icon-white .icon_issue,
+.icon-wrap.icon-black .icon_issue{background-image:url(//img.yonhapnews.co.kr/basic/svc/14_images/icon_topnews_issue.gif);}
+
+.top-news .tl-wrap .icon-wrap.icon-white .icon_pictorial,
+.top-news .tl-wrap .icon-wrap.icon-black .icon_pictorial,
+.lead-wrap .icon-wrap .icon_pictorial,
+.icon-wrap.icon-white .icon_pictorial,
+.icon-wrap.icon-black .icon_pictorial{background-image:url(//img.yonhapnews.co.kr/basic/svc/14_images/icon_topnews_pictorial.gif);}
+
+.top-news .tl-wrap .icon-wrap.icon-white .icon_picture,
+.top-news .tl-wrap .icon-wrap.icon-black .icon_picture,
+.lead-wrap .icon-wrap .icon_picture,
+.icon-wrap.icon-white .icon_picture,
+.icon-wrap.icon-black .icon_picture{background-image:url(//img.yonhapnews.co.kr/basic/svc/14_images/icon_topnews_picture.gif);}
+
+/* .icon-black a:hover,
+.icon-black a:focus,
+.icon-black a:active,
+.icon-white a:hover,
+.icon-white a:focus,
+.icon-white a:active{border:1px solid #2556a7;background-color:#2556a7;background-position:6px -22px !important;color:#fff !important;} */
+
+/* .top-news-wrap .icon-black a:hover,
+.top-news-wrap .icon-black a:focus,
+.top-news-wrap .icon-black a:active{border:1px solid #000;background-color:#000;;background-position:6px 4px !important;color:#d0d1d5 !important;}
+.top-news-wrap .icon-white a:hover,
+.top-news-wrap .icon-white a:focus,
+.top-news-wrap .icon-white a:active{border:1px solid #eee;background-color:#fff;background-position:6px 4px !important;color:#2556a7 !important;} */
+
+.top-news-wrap .tit-sub .icon-wrap a,
+.top-news-wrap .lead .icon-wrap a,
+.related-wrap .icon-wrap a{padding:1px 3px 0 24px;margin:0;background-position:4px 4px;vertical-align:middle !important;}
+
+.top-news-wrap .tit-sub .icon_more,
+.top-news-wrap .lead .icon_more,
+.v-related .icon_more,
+.h-related .icon_more{background-image:url(//img.yonhapnews.co.kr/basic/svc/14_images/icon_topnews_more02.gif) !important;}
+.top-news-wrap .tit-sub .icon_photo,
+.top-news-wrap .lead .icon_photo,
+.v-related .icon_photo,
+.h-related .icon_photo{background-image:url(//img.yonhapnews.co.kr/basic/svc/14_images/icon_topnews_photomovie02.gif) !important;}
+.top-news-wrap .tit-sub .icon_inter,
+.top-news-wrap .lead .icon_inter,
+.v-related .icon_inter,
+.h-related .icon_inter{background-image:url(//img.yonhapnews.co.kr/basic/svc/14_images/icon_topnews_interactive02.gif) !important;}
+.top-news-wrap .tit-sub .icon_onair,
+.v-related .icon_onair,
+.h-related .icon_onair{background-image:url(//img.yonhapnews.co.kr/basic/svc/14_images/icon_topnews_onair02.gif) !important;}
+.top-news-wrap .tit-sub .icon_graphic,
+.top-news-wrap .lead .icon_graphic,
+.v-related .icon_graphic,
+.h-related .icon_graphic{background-image:url(//img.yonhapnews.co.kr/basic/svc/14_images/icon_topnews_graphic02.gif) !important;}
+.top-news-wrap .tit-sub .icon_issue,
+.top-news-wrap .lead .icon_issue,
+.v-related .icon_issue,
+.h-related .icon_issue{background-image:url(//img.yonhapnews.co.kr/basic/svc/14_images/icon_topnews_issue02.gif) !important;}
+.top-news-wrap .tit-sub .icon_pictorial,
+.top-news-wrap .lead .icon_pictorial,
+.v-related .icon_pictorial,
+.h-related .icon_pictorial{background-image:url(//img.yonhapnews.co.kr/basic/svc/14_images/icon_topnews_pictorial02.gif) !important;}
+.top-news-wrap .tit-sub .icon_picture,
+.top-news-wrap .lead .icon_picture,
+.v-related .icon_picture,
+.h-related .icon_picture{background-image:url(//img.yonhapnews.co.kr/basic/svc/14_images/icon_topnews_picture02.gif) !important;}
+
+/* 톱뉴스 컨트롤 버튼 */
+.top-content-black .top-news-btn input,
+.top-content-white .top-news-btn input,
+.top-content-solo .top-news-btn input{position:absolute;z-index:102;top:1px;border:none;cursor:pointer;width:19px;height:19px;text-indent:-500px;}
+
+.top-content-black .top-news-btn .btn_stop,
+.top-content-solo .top-news-btn .btn_stop{display:none;left:0;background:url(//img.yonhapnews.co.kr/basic/svc/14_images/btn_topnews_remote.png) 0 0 no-repeat;}
+.top-content-black .top-news-btn .btn_play,
+.top-content-solo .top-news-btn .btn_play{display:block;left:0;background:url(//img.yonhapnews.co.kr/basic/svc/14_images/btn_topnews_remote.png) 0 -18px no-repeat;}
+.top-content-black .top-news-btn .btn_prev,
+.top-content-solo .top-news-btn .btn_prev{left:18px;background:url(//img.yonhapnews.co.kr/basic/svc/14_images/btn_prev02.gif) 0 0 no-repeat;}
+.top-content-black .top-news-btn .btn_next,
+.top-content-solo .top-news-btn .btn_next{left:36px;background:url(//img.yonhapnews.co.kr/basic/svc/14_images/btn_next02.gif) 0 0 no-repeat;}
+
+.top-content-white .top-news-btn .btn_stop{display:none;left:0;background:url(//img.yonhapnews.co.kr/basic/svc/14_images/btn_topnews_main.png) -18px 0 no-repeat;}
+.top-content-white .top-news-btn .btn_play{display:block;left:0;background:url(//img.yonhapnews.co.kr/basic/svc/14_images/btn_topnews_main.png) 0 0 no-repeat;}
+.top-content-white .top-news-btn .btn_prev{left:18px;background:url(//img.yonhapnews.co.kr/basic/svc/14_images/btn_topnews_main.png) -36px 0  no-repeat;}
+.top-content-white .top-news-btn .btn_next{left:36px;background:url(//img.yonhapnews.co.kr/basic/svc/14_images/btn_topnews_main.png) -54px 0 no-repeat;}
+
+.top-news-wrap.remote-play .top-news-btn .btn_stop{display:block;}
+.top-news-wrap.remote-play .top-news-btn .btn_play{display:none;}
+.top-news-wrap .top-news-btn .page-nation{padding-left:66px !important;}
+
+/* 톱뉴스 관련뉴스 */
+.top-content-wrap .related-wrap a,
+.top-content-black .related-wrap a,
+.top-content-white .related-wrap a,
+.top-content-solo .related-wrap a{font-weight:normal;}
+.top-content-wrap .related-wrap a.sp,
+.top-content-black .related-wrap a.sp,
+.top-content-white .related-wrap a.sp,
+.top-content-solo .related-wrap a.sp{font-weight:bold;}
+
+.top-content-black .related-wrap a,
+.top-content-solo .related-wrap a{color:#d0d1d5;}
+
+/* 톱뉴스-통단*/
+.top-content-wrap{background:url(//img.yonhapnews.co.kr/basic/svc/14_images/bg_box_01.gif) 0 bottom repeat-x #fff;border:1px solid #ddd;border-bottom:none;margin-bottom:9px;padding:19px 19px 2px 19px;}/*contents-box와 동일함*/
+.top-content-wrap .lead-wrap p{font-size:16px;color:#666;display:inline;font-weight:bold;vertical-align:middle;}/* lead */
+.top-content-wrap .lead-wrap span{padding-left:2px;vertical-align:middle;}
+.top-content-wrap .lead-wrap .icon-wrap a{padding-top:0;}
+
+/* 톱뉴스-통단A1 */
+.top-news-A01{padding-bottom:15px;}
+.top-news-A01 .img-wrap{display:block;text-align:center;margin-bottom:28px;}
+.top-news-A01 .tl-wrap{text-align:center;margin-bottom:8px;}
+.top-news-A01 .lead-wrap{text-align:center;margin-bottom:17px;}
+.top-news-A01 .related-wrap{overflow:hidden;}/* 관련뉴스 */
+.top-news-A01 .related-wrap ul{margin:0;}
+.top-news-A01 .related-wrap li{float:left;width:300px;}
+
+/* 톱뉴스-통단A2 */
+.top-news-A02{padding-bottom:15px;}
+.top-news-A02 .tl-wrap{text-align:center;margin-bottom:10px;padding-top:8px;}
+.top-news-A02 .lead-wrap{text-align:center;margin-bottom:10px;}
+.top-news-A02 .img-wrap{display:block;text-align:center;margin-bottom:10px;}
+.top-news-A02 .related-wrap{overflow:hidden;}/* 관련뉴스 */
+.top-news-A02 .related-wrap ul{margin:0;}
+.top-news-A02 .related-wrap li{float:left;width:300px;}
+
+/* 톱뉴스-통단B */
+.top-news-B{overflow:hidden;padding-bottom:19px;}
+.top-news-B .tl-wrap{text-align:center;margin-bottom:10px;padding-top:8px;}
+.top-news-B .lead-wrap{text-align:center;margin-bottom:22px;}
+.top-news-B .img-wrap{float:left;width:616px;}
+.top-news-B .related-wrap{float:right;width:300px;border-bottom:1px solid #ddd;overflow:hidden;}
+.top-news-B .related-wrap h4{padding:19px 0 9px 0;border-top:1px solid #ddd;}
+.top-news-B .related-wrap ul{margin:0 0 15px 0;}
+.top-news-B .related-wrap li{background:url(//img.yonhapnews.co.kr/basic/svc/14_images/bul_2x2_cccccc.gif) 0 6px no-repeat;padding:0 0 0 9px;}
+
+/* 톱뉴스-통단C */
+.top-news-C{padding-bottom:15px;}
+.top-news-C .tl-wrap{text-align:center;margin-bottom:10px;padding-top:8px;}
+.top-news-C .lead-wrap{text-align:center;margin-bottom:22px;}
+.top-news-C .img-wrap{float:left;width:631px;}
+.top-news-C .img-list{float:right;width:300px;clear:right;}
+.top-news-C .related-wrap{clear:both;overflow:hidden;}
+.top-news-C .related-wrap ul{margin:0;}
+.top-news-C .related-wrap li{float:left;width:288px;}
+.top-news-C .related-wrap li.last{float:right;}
+
+.top-news-C .img-list a{position:relative;z-index:101;display:block;width:300px;margin-bottom:5px;color:#fff;}
+.top-news-C .img-list span{position:absolute;z-index:103;bottom:8px;left:9px;width:17px;height:15px;}
+.top-news-C .img-list img{}
+.top-news-C .img-list strong{position:absolute;z-index:102;bottom:0;left:0;display:block;width:257px;height:11px;line-height:11px;padding:11px 10px 9px 33px;color:#fff;font-weight:normal;background:url(//img.yonhapnews.co.kr/basic/svc/14_images/bg_box_03.png);}
+.top-news-C .img-list a:hover strong,
+.top-news-C .img-list a:focus strong,
+.top-news-C .img-list a:active strong{text-decoration:underline;}
+
+/* 톱뉴스+핫뉴스*/
+.top-content-black{height:370px;background:#33364e;border:1px solid #ddd;margin-bottom:9px;}
+.top-content-white{height:370px;background:url(//img.yonhapnews.co.kr/basic/svc/14_images/bg_box_01.gif) 0 bottom repeat-x #fff;border:1px solid #ddd;border-bottom:none;margin-bottom:9px;}
+
+.top-content-black .top-news-wrap{background:#2b2d41;}
+.top-content-black .top-news-wrap,
+.top-content-white .top-news-wrap{float:left;width:635px;height:370px;}
+
+.top-content-black .top-news-list,
+.top-content-white .top-news-list{width:595px;height:300px;margin:0 19px 14px 19px;padding-top:19px;overflow:hidden;position:relative;}
+.top-content-black .top-news-list .top-news,
+.top-content-white .top-news-list .top-news{width:595px;height:300px;}
+
+.top-content-black .tl-wrap,
+.top-content-white .tl-wrap{overflow:hidden;}/* 타이틀 */
+.top-content-black .tl-wrap *,
+.top-content-white .tl-wrap *{vertical-align:top;}
+.top-content-black .tl-wrap h3,
+.top-content-black .tl-wrap .tit-news,
+.top-content-white .tl-wrap h3,
+.top-content-white .tl-wrap .tit-news{display:inline;font-size:1.17em;}
+.top-content-black .tl-wrap h3 a,
+.top-content-black .tl-wrap .tit-news a,
+.top-content-white .tl-wrap h3 a,
+.top-content-white .tl-wrap .tit-news a{font-family:'나눔고딕',NanumGothic,'Nanum Gothic';font-size:26px;line-height:1;font-weight:normal;letter-spacing:-1px;}
+
+.top-content-white .tl-wrap h3 a,
+.top-content-white .tl-wrap .tit-news a{color:#333;}
+.top-content-black .tl-wrap h3 a,
+.top-content-black .tl-wrap .tit-news a{color:#fff;}
+
+.top-content-white .tl-wrap span,
+.top-content-black .tl-wrap span{padding-left:4px;vertical-align:middle;}
+/* .top-content-white .tl-wrap span a,
+.top-content-black .tl-wrap span a{margin-top:2px;} */
+
+.top-content-black .top-news-btn,
+.top-content-white .top-news-btn{position:relative;z-index:101;overflow:hidden;height:23px;margin:0 19px;vertical-align:top;}
+.top-content-black .top-news-btn .page-nation,
+.top-content-white .top-news-btn .page-nation,
+.top-content-solo .top-news-btn .page-nation{float:left;width:45px;height:23px;padding:2px 0 0 45px;color:#9a9ba3;}
+
+.top-content-black .top-news-btn a,
+.top-content-white .top-news-btn a,
+.top-content-solo .top-news-btn a{float:right;width:100px;height:23px;text-align:right;padding-top:4px;}
+
+.top-content-black .top-news-btn a,
+.top-content-solo .top-news-btn a{color:#858695;}
+
+.top-content-white .top-news-btn a{color:#626262;}
+
+/* 톱뉴스(공통)  */
+.top-news{}
+.top-news .tl-wrap h3,
+.top-news .tl-wrap .tit-news{vertical-align:middle;}
+.top-news .tl-wrap h3 a,
+.top-news .tl-wrap .tit-news a{vertical-align:middle;}
+
+.top-news .icon-wrap{padding-top:0;}
+.top-news .tit-sub{display:block;}
+
+/* 톱뉴스 텍스트형 */
+.top-news-T{}
+.top-news-T .tl-wrap{height:45px;}
+.top-news-T .tl-wrap h3{}
+.top-news-T .tl-wrap span{}
+.top-news-T .img-wrap{float:left;width:255px;height:255px;}
+.top-news-T .img-wrap img{width:255px;height:255px;}
+.top-news-T .news-wrap{float:right;width:322px;height:255px;}
+.top-news-T .tit-sub{line-height:20px;}
+.top-news-T .tit-sub strong{vertical-align:middle;}
+.top-news-T .tit-sub .icon-wrap{}
+.top-news-T .related-wrap{margin:18px 0 0 0;}
+.top-news-T .img-wrap img{width:255px;height:255px;}
+
+.top-content-black .top-news-T .news-wrap p{color:#d0d1d5;margin-bottom:12px;}
+.top-content-black .top-news-T .news-wrap p a{color:#d0d1d5;}
+.top-content-black .top-news-T .news-wrap .tit-sub{color:#d0d1d5;font-size:16px;margin-top:7px;}
+
+.top-content-white .top-news-T .news-wrap p{color:#555;margin-bottom:12px;}
+.top-content-white .top-news-T .news-wrap p a{color:#555;}
+.top-content-white .top-news-T .news-wrap .tit-sub{color:#555;display:block;font-size:16px;margin-top:7px;}
+
+/* 톱뉴스 이미지형 */
+.top-news-I{position:relative;z-index:101;}
+.top-news-I .img-wrap{width:595px;height:300px;}
+.top-news-I .img-wrap img{width:595px;height:300px;}
+.top-news-I .news-wrap{position:absolute;z-index:102;bottom:0;left:0;display:block;width:565px;min-height:69px;padding:10px 15px;color:#fff;font-weight:normal;background:url(//img.yonhapnews.co.kr/basic/svc/14_images/bg_box_03.png);}
+.top-news-I .tl-wrap{/* height:33px; */}
+.top-news-I .tl-wrap h3,
+.top-news-I .tl-wrap .tit-news{}
+.top-news-I .tl-wrap span{}
+.top-news-I .tl-wrap .tit-sub{display:block;margin-top:3px;font-weight:bold;font-size:14px;color:#fefefe;}
+.top-news-I .tl-wrap .tit-sub strong{vertical-align:middle;}
+.top-news-I .tl-wrap .tit-sub .icon-wrap{font-weight:normal;}
+.top-news-I .lead{margin-top:3px;}
+.top-news-I .lead a{color:#fff;}
+.top-news-I .lead .icon-white a{color:#2556a7;}
+.top-news-I .related-wrap{overflow:hidden;margin-top:3px;}
+.top-news-I .related-wrap ul{margin:0;}
+.top-news-I .related-wrap li{float:left;width:262px;}
+
+.top-content-white .top-news-I .tl-wrap h3 a,
+.top-content-white .top-news-I .tl-wrap .tit-news a{font-family:'나눔고딕',NanumGothic,'Nanum Gothic';font-size:26px;line-height:1;color:#fff;font-weight:normal;}
+.top-content-white .top-news-I .related-wrap li a{color:#fff;}
+
+/* 톱뉴스 이미지형-솔로 */
+.top-content-solo{width:624px;border:1px solid #ddd;margin-bottom:10px;}
+
+.top-content-solo .top-news-list{width:624px;height:auto;margin:0;padding:0;overflow:hidden;position:relative;}
+.top-content-solo .top-news-list .top-news{width:624px;height:auto;}
+
+.top-content-solo .top-news-btn{position:relative;z-index:101;overflow:hidden;height:23px;margin:-36px 19px 13px 19px;vertical-align:top;}
+*:first-child+html .top-content-solo .top-news-btn{margin-bottom:0;}
+
+.top-news-S{position:relative;z-index:101;}
+.top-news-S .img-wrap{width:624px;}
+.top-news-S .img-wrap img{width:624px;}
+.top-news-S .news-wrap{position:absolute;z-index:102;bottom:0;left:0;display:block;width:594px;padding:15px 15px 47px 15px;color:#fff;font-weight:normal;background:url(//img.yonhapnews.co.kr/basic/svc/14_images/bg_box_03.png);}
+.top-news-S .tl-wrap{overflow:hidden;height:37px;}/* 타이틀 */
+.top-news-S .tl-wrap *{vertical-align:top;}
+.top-news-S .tl-wrap h3{display:inline;}
+.top-news-S .tl-wrap h3 a{font-family:'나눔고딕',NanumGothic,'Nanum Gothic';font-size:26px;line-height:1;color:#fff;font-weight:normal;}
+.top-news-S .tl-wrap span{padding-left:7px;}
+
+.top-news-S .related-wrap{}
+.top-news-S .related-wrap ul{margin:0;}
+.top-news-S .related-wrap li{float:left;width:285px;}
+
+/* 톱뉴스 화보형 */
+.top-news-P{}
+.top-news-P .tl-wrap{}
+.top-news-P .tl-wrap h3{}
+.top-news-P .tl-wrap span{}
+.top-news-P .img-wrap{display:block;width:595px;margin:6px 0 10px;}
+.top-news-P .img-wrap img{max-width:595px;max-height:210px;}
+.top-news-P .tit-sub{display:block;margin:3px 0 0;font-weight:bold;font-size:14px;color:#fefefe;}
+.top-news-P .lead{}
+.top-news-P .lead a{color:#fff;}
+.top-news-P .related-wrap{overflow:hidden;margin-top:5px;}
+.top-news-P .related-wrap ul{margin:0;}
+.top-news-P .related-wrap li{float:left;width:278px;}
+
+.top-content-white .top-news-P .tit-sub{color:#555 !important;}
+
+/* 뉴스와이 */
+.newsY-wrap{background:#fff !important;padding:15px 0 0;}
+.newsY-wrap .con{height:41px;background:#ff7200;}
+.newsY-wrap h2{float:left;width:158px;height:41px;}
+.newsY-wrap p{float:left;width:486px;height:41px;line-height:41px;}
+.newsY-wrap p a{font-size:16px;font-weight:bold;color:#fff;}
+.newsY-wrap .con02{height:41px;background:#ff7200;text-align:center;}
+.newsY-wrap .con02 p{width:100%;}
+
+/* 주요뉴스-아이콘 (툴팁형) */
+.icon-wrap{display:inline-block;padding:3px 0 0 6px;.padding:0 0 0 6px;.margin-top:0px;vertical-align:middle;}
+.icon-wrap span{position:relative;z-index:201;display:inline-block;}
+.icon-wrap span span{display:inline-block;width:17px;height:15px;overflow:hidden;background-position:0 0;background-repeat:no-repeat;}
+.icon-wrap span strong{position:absolute;z-index:202;top:-36px;left:-24px;width:65px;height:28px;padding-top:4px;text-align:center;color:#2556a7;font-weight:normal;background:url(//img.yonhapnews.co.kr/basic/svc/14_images/bg_bubble.gif) center 0 no-repeat;}
+
+.icon-wrap .icon_related span{background-image:url(//img.yonhapnews.co.kr/basic/svc/14_images/icon_section_related.gif);}
+.icon-wrap .icon_graphic span{background-image:url(//img.yonhapnews.co.kr/basic/svc/14_images/icon_section_graphic.gif);}
+.icon-wrap .icon_picture span{background-image:url(//img.yonhapnews.co.kr/basic/svc/14_images/icon_section_picture.gif);}
+.icon-wrap .icon_photo span{background-image:url(//img.yonhapnews.co.kr/basic/svc/14_images/icon_section_photo.gif);}
+
+.icon-wrap span.on span, .icon-wrap span:hover span{background-position:0 -15px;}
+.icon-wrap span.on strong, .icon-wrap span:hover strong{display:block;}
+.icon-wrap span strong{display:none;}
+
+/* 주요뉴스,여행 주요뉴스 전체보기 */
+.headlines .btn-more,
+.travel-list-wrap .btn-more{display:block;text-align:right;margin-top:15px;}
+.headlines .btn-more a,
+.travel-list-wrap .btn-more a{color:#666;}
+
+/* 세로-관련기사 */
+.h-related{margin:5px 0 0 3px;}
+.h-related li{background:url(//img.yonhapnews.co.kr/basic/svc/14_images/icon_related.gif) 0 5px no-repeat;padding:0 0 0 12px;margin-top:2px;}
+.h-related li>a{vertical-align:middle;font-weight:bold;}
+.h-related .icon-wrap{padding-top:0;}
+.h-related .icon-wrap a{font-weight:normal;vertical-align:middle;}
+
+.h-related02{}
+.h-related02 li{position:relative;padding-left:16px;line-height:26px;}
+.h-related02 li:after{content:"";display:block;clear:both;position:absolute;top:11px;left:0;width:4px;height:4px;background:#000;border-radius:50%;}
+.h-related02 li,
+.h-related02 li a{font-size:16px;color:#2556a7;}
+.h-related02 li.on a{font-weight:bold;text-decoration:underline;}
+
+/* 가세로-관련기사 */
+.v-related{margin:5px 0 0 3px;overflow:hidden;}
+.v-related:after{content:'';display:block;clear:both;font-size:0;line-height:0;height:0;overflow:hidden;}
+.v-related li{overflow:hidden;float:left;width:274px;height:22px;background:url(//img.yonhapnews.co.kr/basic/svc/14_images/icon_related.gif) 0 5px no-repeat;margin-right:6px;padding:0 0 0 12px;margin-top:2px;}
+.v-related li>a{display:inline-block;overflow:hidden;width:auto;font-weight:bold;text-overflow:ellipsis;white-space:nowrap;letter-spacing:-1px;vertical-align:middle;}
+.v-related .icon-wrap{padding-top:0;}
+.v-related .icon-wrap a{font-weight:normal;vertical-align:middle;}
+
+/* 이미지 뉴스 */
+.images-box{overflow:hidden;background:url(//img.yonhapnews.co.kr/basic/svc/14_images/bg_box_02.gif) 0 bottom no-repeat;margin-bottom:9px;}
+.images-box:after{content:'';display:block;clear:both;font-size:0;line-height:0;height:0;overflow:hidden;}
+.images-box .images-cell{position:relative;z-index:100;float:left;width:205px;overflow:hidden;margin-right:5px;background:url(//img.yonhapnews.co.kr/basic/svc/14_images/bg_box_02.gif) 0 0 no-repeat;}
+.images-box .images-cell.last{float:right;width:205px;margin-right:0;background:url(//img.yonhapnews.co.kr/basic/svc/14_images/bg_box_02.gif) right 0 no-repeat;}
+.images-box .images-cell .tit-con .num{display:none;}
+.images-box h2{border-bottom:1px solid #ddd;height:28px;line-height:28px;padding:14px 0 0 19px;margin-bottom:19px;vertical-align:top;}
+.images-box h2 a{float:left;padding-right:7px;background:url(//img.yonhapnews.co.kr/basic/svc/14_images/arr2_3x7_999999.gif) right 4px no-repeat;vertical-align:top;}
+.images-box h2 a.none{padding-right:0;background:none;}
+.images-box h3,
+.images-box .ico{position:absolute;z-index:101;top:141px;left:28px;width:17px;height:15px;}
+.images-box dl{position:relative;z-index:101;margin:0 auto;width:165px;}
+.images-box dt{padding-top:172px;font-size:14px;}
+.images-box dd.poto{position:absolute;z-index:103;top:0;left:0;width:165px;height:165px;overflow:hidden;}
+.images-box dd.lead{margin-top:3px;line-height:1.6;}
+.images-box dd.poto img{width:165px;height:165px;}
+
+.images-box .box-flex{position:relative;margin:0 auto;width:165px;}
+.images-box .box-flex a{display:block;width:165px;text-align:center;}
+.images-box .box-flex .tit-con{display:block;width:165px;padding-top:7px;background:#fff;text-align:left;}
+.images-box .box-flex .tit-con .tit{position:static;width:100%;font-size:12px;line-height:1.5;}
+.images-box .box-flex .tit-con .num{}
+.images-box .box-flex a{background:#000;}
+.images-box .box-flex a img{width:165px;height:165px;}
+
+.images-box .page-nation{position:absolute;z-index:103;top:13px;right:63px;color:#666;}
+.images-box input{position:absolute;z-index:103;top:12px;border:none;cursor:pointer;width:19px;height:19px;text-indent:-500px;}
+.images-box .btn_prev{right:38px;background:url(//img.yonhapnews.co.kr/basic/svc/14_images/btn_prev.gif) 0 0 no-repeat;}
+.images-box .btn_next{right:20px;background:url(//img.yonhapnews.co.kr/basic/svc/14_images/btn_next.gif) 0 0 no-repeat;}
+
+/* 영상/포토무비 */
+.images-box1{padding-bottom:17px;}
+.images-box1 .images-cell ul{position:relative;width:410px;height:208px;}
+.images-box1 .images-cell li{position:absolute;left:0;top:0;float:left;width:205px;z-index:1;}
+.images-box1 .images-cell li.on{z-index:2;}
+
+/* 이매진 하단 리스트 */
+.images-box2{padding-bottom:7px;}
+.images-box2 .images-cell ul{width:165px;margin:0 auto;padding-top:7px;}
+.images-box2 .images-cell li{border-top:1px solid #eee;font-weight:bold;padding:7px 0 8px 0;line-height:1.6;}
+
+/* 포토/화보 : 포토 홈 동일 */
+/* 섹션-전국 */
+.photopictorial{position:relative;z-index:100;overflow:hidden;padding-bottom:14px;}
+.photopictorial .tl{border-bottom:1px solid #ddd;height:28px;line-height:28px;padding:13px 0 0 19px;margin-bottom:14px;vertical-align:top;}
+.photopictorial .tl a{float:left;padding-right:7px;background:url(//img.yonhapnews.co.kr/basic/svc/14_images/arr2_3x7_999999.gif) right 4px no-repeat;vertical-align:top;}
+.photopictorial .tl a.none{padding-right:0;background:none;}
+.photopictorial .title{padding:11px 18px 7px 18px;}
+.photopictorial .title a{font-size:17px;line-height:1.2;font-family:'Malgun Gothic','맑은 고딕','돋움',dotum,arial,sans-serif;color:#333;letter-spacing:-0.5px;}
+.photopictorial .page-nation{position:absolute;z-index:101;top:13px;right:63px;color:#666;}
+.photopictorial input{position:absolute;z-index:101;top:11px;border:none;cursor:pointer;width:19px;height:19px;text-indent:-500px;}
+.photopictorial .btn_prev{right:38px;background:url(//img.yonhapnews.co.kr/basic/svc/14_images/btn_prev.gif) 0 0 no-repeat;}
+.photopictorial .btn_next{right:20px;background:url(//img.yonhapnews.co.kr/basic/svc/14_images/btn_next.gif) 0 0 no-repeat;}
+
+.photo-list-wrap{position:relative;z-index:101;width:585px;height:205px;margin:0 auto;}
+.photo-list{position:absolute;left:0;top:0;height:205px;z-index:102;}
+.photo-list.on{z-index:103;}
+.photo-list li{position:relative;z-index:102;float:left;width:195px;height:195px;text-align:center;}
+.photo-list li h3{position:absolute;z-index:104;bottom:29px;left:10px;width:17px;height:15px;}
+.photo-list li a{display:block;position:relative;z-index:103;top:5px;left:0;width:195px;height:195px;overflow:hidden;color:#fff;}
+.photo-list li a:hover .tit,
+.photo-list li a:focus .tit,
+.photo-list li a:active .tit{text-decoration:underline;}
+
+.photo-list li .tit-con{overflow:hidden;position:absolute;z-index:104;bottom:0;left:0;display:block;width:175px;/* height:12px;line-height:12px; */padding:8px 10px 6px 10px;text-align:center;font-weight:normal;background:url(//img.yonhapnews.co.kr/basic/svc/14_images/bg_box_03.png);}
+.photo-list li .tit-con .tit{overflow:hidden;display:block;width:175px;font-weight:normal;text-overflow:ellipsis;white-space:nowrap;}
+.photo-list li .img-con img{width:195px;}
+
+.photo-list li.on a{border:5px solid #436bbd;top:0;left:-5px;}
+.photo-list li.on{z-index:108;}
+.photo-list li.on a{z-index:109;}
+.photo-list li.on h3{z-index:110;}
+
+/* 주요키워드 */
+.keyword{position:relative;z-index:800;padding:13px 18px 12px 19px;height:18px;}
+.keyword ul{position:relative;float:left;width:280px;height:18px;line-height:18px;overflow:hidden;}
+.keyword li{position:absolute;width:100%;vertical-align:top;}
+.keyword li a{display:block;font-weight:bold;background:#fff;}
+.keyword li a img{margin:6px 8px 0 0;vertical-align:middle;margin-top:-3px;}
+.keyword input{border:none;cursor:pointer;width:19px;height:19px;text-indent:-500px;margin-top:-2px;}
+
+.keyword-btn1,
+.keyword-btn2{float:right;width:20px;height:15px;}
+*:first-child+html .keyword-btn1,
+*:first-child+html .keyword-btn2{zoom:0;float:none;}
+
+.keyword-btn1 .btn_show{background:url(//img.yonhapnews.co.kr/basic/svc/14_images/btn_show.gif) 0 0 no-repeat;}
+.keyword-btn2 .btn_close{background:url(//img.yonhapnews.co.kr/basic/svc/14_images/btn_close.gif) 0 0 no-repeat;}
+
+.keyword h2,
+.keyword .keyword-btn2{display:none;}
+
+.keyword.on h2{float:left;width:280px;height:15px;line-height:15px;}
+.keyword.on ul{position:absolute;float:none;top:41px;left:-1px;width:338px;height:130px;border:1px solid #555;background:#fff;padding:9px 0;}
+.keyword.on ul li{position:static;}
+.keyword.on li a{display:block;padding:4px 19px;height:18px;line-height:18px;}
+.keyword.on li a:hover,
+.keyword.on li a:focus{background:#f4f4f4;}
+.keyword.on .keyword-btn1{display:none;}
+.keyword.on h2,
+.keyword.on .keyword-btn2{display:block;.display:inline;}
+
+/* 코스피 (수정됨) */
+.kospi-wrap{}
+.kospi-wrap .k-time{padding:6px 8px 2px;border-bottom:1px solid #ddd;font-size:11px;color:#888;text-align:right;}
+.kospi-wrap dl{height:98px;width:338px;}
+.kospi-wrap dt{float:left;padding:12px 0 0 39px;font-weight:bold;}
+.kospi-wrap dd{float:left;width:71px;padding:12px 19px 0 0;text-align:right;}
+.kospi-wrap dd span{display:block;margin-bottom:2px;}
+.kospi-wrap dd strong{font-weight:normal;}
+.kospi-wrap img{vertical-align:middle;margin-top:-2px;}
+
+.kospi,
+.kosdaq{height:46px;border-bottom:1px solid #eee;}
+.dollar,
+.yen{height:28px;}
+
+dt.kosdaq,
+dt.yen{border-left:1px solid #eee;}
+
+dt.kospi{width:39px;background:url(//img.yonhapnews.co.kr/basic/svc/14_images/icon_kospi.gif) 19px 12px no-repeat;}
+dt.kosdaq{width:40px;background:url(//img.yonhapnews.co.kr/basic/svc/14_images/icon_kosdaq.gif) 19px 12px no-repeat;}
+dt.dollar{width:39px;background:url(//img.yonhapnews.co.kr/basic/svc/14_images/icon_dollar.gif) 18px 11px no-repeat;}
+dt.yen{width:40px;background:url(//img.yonhapnews.co.kr/basic/svc/14_images/icon_yen.gif) 18px 11px no-repeat;}
+
+dd.kospi strong{color:#df5757;}
+dd.kosdaq strong{color:#2556a7;}
+
+.kospi-wrap strong.up{color:#df5757;}
+.kospi-wrap strong.down{color:#2556a7;}
+
+/* 코스피 (2015) */
+.main2015 .kospi-wrap .k-time{padding:6px 8px 2px;}
+.main2015 .kospi-wrap dl{width:300px;}
+.main2015 .kospi-wrap dt{padding:12px 0 0 28px;}
+.main2015 .kospi-wrap dd{padding:12px 10px 0 0;font-size:13px;letter-spacing:0;}
+
+.main2015 dt.kosdaq,
+.main2015 dt.yen{border-left:1px solid #e3e3e3;}
+
+.main2015 dt.kospi{width:39px;background:url(//img.yonhapnews.co.kr/basic/svc/14_images/icon_kospi.gif) 7px 14px no-repeat;}
+.main2015 dt.kosdaq{width:40px;background:url(//img.yonhapnews.co.kr/basic/svc/14_images/icon_kosdaq.gif) 7px 14px no-repeat;}
+.main2015 dt.dollar{width:39px;background:url(//img.yonhapnews.co.kr/basic/svc/14_images/icon_dollar.gif) 7px 13px no-repeat;}
+.main2015 dt.yen{width:40px;background:url(//img.yonhapnews.co.kr/basic/svc/14_images/icon_yen.gif) 7px 13px no-repeat;}
+
+/* 채권 및  CD금리 */
+.bond-wrap{}
+.bond-wrap dl{height:117px;width:338px;}
+.bond-wrap dt{float:left;width:80px;height:46px;padding:12px 0 0 19px;font-weight:bold;}
+.bond-wrap dt span{font-weight:normal;}
+.bond-wrap dd{float:left;width:50px;height:46px;padding:12px 19px 0 0;text-align:right;}
+.bond-wrap dd span{display:block;margin-bottom:2px;}
+.bond-wrap dd strong{font-weight:normal;}
+.bond-wrap img{vertical-align:middle;margin-top:-2px;}
+
+.corporate,
+.exchequer{border-bottom:1px solid #eee;}
+
+dd.corporate,
+dd.cd{border-right:1px solid #eee;}
+
+dt.corporate{/*background:url(//img.yonhapnews.co.kr/basic/svc/14_images/icon_corporate.gif) 19px 12px no-repeat;*/}
+dt.exchequer{/*background:url(//img.yonhapnews.co.kr/basic/svc/14_images/icon_exchequer.gif) 19px 12px no-repeat;*/}
+dt.cd{/*background:url(//img.yonhapnews.co.kr/basic/svc/14_images/icon_cd.gif) 18px 11px no-repeat;*/}
+
+.bond-wrap dd strong.up{color:#df5757;}
+.bond-wrap dd strong.down{color:#2556a7;}
+
+/* 메인배너 */
+.main-banner{}
+.main-banner .inner{display:block;margin:19px;text-align:center;}
+
+.gnb-news-06 .main-banner{margin-bottom:0;border-bottom:0;}
+
+/* 섹션 톱기사 */
+/* .section-topnews{overflow:hidden;padding:0 19px;margin-top:-19px;background:url(//img.yonhapnews.co.kr/basic/svc/14_images/bar_1x11_dddddd.gif) 409px 0 repeat-y;}
+.section-topnews01{float:left;width:370px;padding:14px 0 15px 0;}
+.section-topnews02{float:right;width:176px;padding:17px 0 15px 19px;}
+
+.section-topnews01 h4,
+.section-topnews01 .tit{display:inline;line-height:26px;}
+.section-topnews01 h4 a,
+.section-topnews01 .tit a{font-size:20px;color:#000;vertical-align:middle;line-height:26px;}
+.section-topnews01 .tit-sub{margin-top:3px;}
+.section-topnews01 .tit-sub strong{font-size:14px;color:#767676;font-weight:bold;}
+.section-topnews01 .icon-wrap{padding:0 0 0 3px; vertical-align:middle;}
+.section-topnews01 .icon-wrap a{border:1px solid #a7bfef;}
+.section-topnews01 .lead a{color:#444;line-height:1.65;}
+.section-topnews01 .poto{display:block; margin:10px 0 7px 0;}
+.section-topnews01 .poto img{width:370px;}
+
+.section-topnews02 h4,
+.section-topnews02 .tit{margin-bottom:1px;line-height:22px;}
+.section-topnews02 h4 a,
+.section-topnews02 .tit a{font-size:16px;}
+.section-topnews02 .lead a{color:#444;line-height:1.65;}
+
+.section-topnews03{overflow:hidden;margin:19px 19px 0 19px;padding-bottom:19px;}
+.section-topnews03 .poto-anc{overflow:hidden;float:left;width:210px;height:125px;margin:5px 16px 0 0;text-align:center;}
+.section-topnews03 .poto-img{max-width:210px;max-height:125px;}
+.section-topnews03 .article{}
+.section-topnews03 .article h4,
+.section-topnews03 .article .tit{margin-top:3px;line-height:28px;letter-spacing:-1px;}
+.section-topnews03 .article h4 a,
+.section-topnews03 .article .tit a{font-size:20px;color:#000;}
+.section-topnews03 .article p strong,
+.section-topnews03 .article .tit-sub{display:block;font-size:14px;color:#767676;font-weight:bold;margin-bottom:7px;}
+.section-topnews03 .article .lead{margin-top:3px;}
+.section-topnews03 .article .lead a{color:#444;line-height:1.65;}
+.section-topnews03 .v-related{margin-top:7px;}
+.section-topnews03 .v-related li{width:277px;} */
+
+/* 섹션 톱기사 : 연예-스포츠 */
+/* .section-sports{overflow:hidden;margin:19px 19px 0 19px;padding-bottom:19px;}
+.section-sports01{position:relative;z-index:101;float:left;width:460px;height:350px;}
+.section-sports02{float:left;width:218px;height:350px;margin-left:20px;}
+
+.section-sports01 h4,
+.section-sports01 .tit{margin-bottom:4px;line-height:22px;}
+.section-sports01 h4 a,
+.section-sports01 .tit a{font-size:20px;color:#fff;letter-spacing:-1px;}
+.section-sports01 div{position:absolute;z-index:102;bottom:0;left:0;display:block;width:420px;padding:12px 20px 12px 20px;background:url(//img.yonhapnews.co.kr/basic/svc/14_images/bg_box_03.png);}
+.section-sports01 .lead a{color:#fff;}
+.section-sports01 .poto{display:block;width:460px;height:350px;}
+.section-sports01 .poto img{width:460px;height:350px;}
+
+.section-sports01 .v-related,
+.section-sports01 .h-related{margin-top:-2px;}
+.section-sports01 .v-related a,
+.section-sports01 .h-related a{color:#c2c3ca;}
+.section-sports01 .v-related a:hover,
+.section-sports01 .h-related a:hover,
+.section-sports01 .v-related a:focus,
+.section-sports01 .h-related a:focus,
+.section-sports01 .v-related a:active
+.section-sports01 .h-related a:active{color:#c2c3ca;}
+.section-sports01 .v-related a:visited,
+.section-sports01 .h-related a:visited{color:#858695;}
+
+.section-sports02 h4,
+.section-sports02 .tit{margin:11px 0 3px 0;line-height:22px;}
+.section-sports02 h4 a,
+.section-sports02 .tit a{font-size:16px;letter-spacing:-1px;}
+.section-sports02 .lead a{line-height:1.65;}
+.section-sports02 .poto{display:block;width:218px;height:166px;}
+.section-sports02 .poto img{width:218px;height:166px;} */
+
+/* 섹션 여행/축제 */
+.travel-main-page .travel-zone .paging{display:none;}
+.travel-main-page .section-top-zone02,
+.travel-main-page .contents01 .contents-box{border:none;}
+.festival-list-page .contents-box.travel-zone{margin-bottom:0;border:none;}
+.travel-schedule-zone{margin-bottom:5px;.margin-bottom:9px;padding-bottom:0;border:0;background:none;}
+
+/* 섹션 톱기사 : 여행 */
+.section-travel{overflow:hidden;margin:19px 18px 0 19px;padding-bottom:19px;}
+.section-travel01,
+.section-travel02,
+.section-travel03{position:relative;z-index:101;float:left;height:350px;}
+
+.section-travel01{width:348px;margin-right:5px;}
+.section-travel02{width:348px;margin-right:5px;}
+.section-travel03{width:230px;}
+/* .section-travel01 img{width:453px;height:350px;}
+.section-travel02 img{width:244px;height:350px;}
+.section-travel03 img{width:230px;height:350px;} */
+
+.section-travel .tit{margin-bottom:4px;line-height:24px;}
+.section-travel .tit a{padding-bottom:2px;font-size:20px;color:#fff;line-height:24px;letter-spacing:-2px;}
+.section-travel .tit a:hover{box-shadow:inset 0 0 0 #fff,inset 0 -1px 0 #b5b5b5;text-decoration:none;}
+
+.section-travel01 div,
+.section-travel02 div,
+.section-travel03 div{position:absolute;z-index:102;bottom:0;left:0;display:block;height:76px;padding:10px 20px 2px 20px;background:url(//img.yonhapnews.co.kr/basic/svc/14_images/bg_box_03.png);}
+
+.section-travel01 div{width:308px;}
+.section-travel02 div{width:308px;}
+.section-travel03 div{width:190px;text-align:center;}
+.section-travel03 div .tit a{padding-bottom:0;font-size:25px;font-family:arial, sans-serif;}
+
+.section-travel01 .poto,
+.section-travel02 .poto{background-position:center center !important;}
+
+.section-travel .lead,
+.section-travel .lead a{display:none;color:#fff;}
+.section-travel .lead a:hover{text-decoration:none;}
+.section-travel .poto{display:block;width:100%;height:350px;}
+.section-travel img{width:100%;}
+
+/* 섹션 : 여행 */
+.travel-zone{position:relative;}
+.travel-zone .tit-sub{border-bottom:1px solid #ddd;height:29px;line-height:29px;padding:12px 0 0 19px;margin-bottom:19px;vertical-align:top;}
+.travel-zone .btn-more{position:absolute;right:17px;top:-2px;}
+.travel-zone .btn-more a{padding:6px 10px;color:#333;}
+.travel-zone .btn-more a:hover{background:#dedede;text-decoration:none;}
+
+.travel-list-wrap{margin:19px 0 35px 0;}
+.travel-list-wrap .travel-list{position:relative;z-index:101;border:1px solid #eee;border-left:none;border-bottom:none;margin-top:-1px;}
+.travel-list-wrap .travel-list:after{content:'';display:block;clear:both;font-size:0;line-height:0;height:0;overflow:hidden;}
+*:first-child+html .travel-list-wrap .travel-list{zoom:1;}
+.travel-list-wrap .travel{position:relative;z-index:102;float:left; width:194px;height:255px;border-left:1px solid #eee;border-bottom:1px solid #eee;}
+
+.travel-list-wrap .travel .item{padding:15px;width:164px;height:225px;}
+.travel-list-wrap .travel .item.on{position:relative;z-index:103;top:-1px;left:-1px;padding:11px;width:164px;height:224px;border:5px solid #2556a7;}
+
+.travel-list-wrap .travel .con{position:relative;z-index:104;}
+.travel-list-wrap .travel .poto{overflow:hidden;display:inline-block;width:163px;height:102px;margin-bottom:6px;}
+.travel-list-wrap .travel .poto img{width:163px;/* height:102px; */}
+.travel-list-wrap .travel .news-tl{display:inline-block;margin-bottom:6px;font-size:15px;line-height:1.4;letter-spacing:-1px;}
+.travel-list-wrap .travel .lead{overflow:hidden;color:#555;}
+.travel-list-wrap .travel .lead:hover a{text-decoration:none;}
+
+/* 섹션 하위 리스트 */
+.section-list-wrap{height:255px;margin-top:-19px;}
+.section-list-wrap a{color:#444;}
+.section-list-wrap li.on a{font-weight:bold;color:#2556a7;text-decoration:underline;}
+
+.section-list01,
+.section-list02,
+.section-list03,
+.section-list04{height:255px;border-left:1px solid #eee;}
+
+.section-list01{float:left;width:115px;border:none;}
+.section-list02{float:left;width:120px;}
+.section-list03{float:left;width:230px;}
+.section-list04{float:left;width:115px;}
+
+.section-list-wrap dl{}
+.section-list-wrap dt{padding:19px 0 0 18px;height:20px;vertical-align:top;}
+.section-list-wrap dd{}
+.section-list-wrap li{padding:0 0 2px 18px;}
+
+.section-list01 ul{margin-bottom:41px;}
+.section-list03 ul{float:left;width:115px;}
+
+/* 특파원 */
+.correspondent-wap{border-bottom:1px solid #eee;}
+.correspondent-wap ul{padding:19px 18px 3px 18px;overflow:hidden;}
+.correspondent-wap li{float:left;width:76px;margin-left:42px;padding-bottom:13px;text-align:center;}
+.correspondent-wap li:first-child{margin-left:25px;}
+.correspondent-wap li img{/* float:left; */width:50px;height:50px;}
+.correspondent-wap li .name{display:block;padding-top:17px;font-weight:normal;color:#333;text-align:center;}
+
+.correspondent-wap ul.items06{} /* 인원수 */
+.correspondent-wap ul.items06 li{margin-left:16px;}
+.correspondent-wap ul.items06 li:first-child{margin-left:0;}
+
+/* 본문보기 좌측 콘텐츠 안 광고 */
+.view-ad-wrap{margin:29px 19px;position:relative;}
+
+/* 기사 본문 관련뉴스*/
+.view-wrap{position:relative;}
+.view-wrap .related-wrap{position:relative;border:1px solid #ddd;background:#eee;margin:29px 19px;padding:19px 19px 15px 19px;}
+.view-wrap .related-wrap h2,
+.view-wrap .related-wrap .tit{font-weight:bold;font-size:12px;color:#555;font-family:돋움, dotum, 굴림, Gulim, Arial, AppleGothic, Sans-serif;vertical-align:middle;}
+.view-wrap .related-wrap .ad-tag{margin-left:4px;vertical-align:middle;}
+.view-wrap .related-wrap li a{font-size:14px;color:#000;}
+.view-wrap .related-wrap li{margin-top:4px;}
+.view-wrap .related-wrap .more{position:absolute;top:19px;right:19px;}
+
+/* 건강/재테크 */
+.view-wrap .other-wrap{background:#fafafa;border:1px solid #ddd;border-right:none;overflow:hidden;margin:29px 19px;}
+.view-wrap .other-wrap .btn_more{display:none;}/* 더보기 버튼 숨기기 */
+.view-wrap .other-wrap .contents-box{background:none;border:none;border-right:1px solid #ddd;margin-bottom:0;padding:14px 19px;width:253px;float:left;}
+.view-wrap .other-wrap .list-style02{position:relative;z-index:100;}
+.view-wrap .other-wrap .list-style02 h2{font-size:12px;border-bottom:none;height:29px;line-height:29px;padding:0 0 0 0;margin-bottom:0;}
+.view-wrap .other-wrap .list-style02 ul{margin:0 auto;width:100%;padding-bottom:0;margin-top:0;}
+.view-wrap .other-wrap .list-style02 li{padding:0 0 0 8px;height:16px;margin-bottom:5px;overflow:hidden;background:url(//img.yonhapnews.co.kr/basic/svc/14_images/bul_2x2_cccccc.gif) 0 8px no-repeat;}
+
+/* 연합뉴스 */
+.view-wrap02{position:relative;border:none;} /* 기사본문 하단 - 오늘의 연합뉴스 & 비주얼 뉴스 & 조이앤인포 복합 광고 아이프레임 */
+.view-wrap03{border:none;} /* 조이앤인포 복합 광고 wrap */
+.view-wrap04{border:none;} /* 팝인광고 2017-02-15 */
+
+.yonhapnews-wrap{overflow:hidden;}
+.yonhapnews-wrap .tit{font-weight:bold;font-size:12px;color:#555;font-family:돋움, dotum, 굴림, Gulim, Arial, AppleGothic, Sans-serif;vertical-align:middle;}
+.yonhapnews-wrap .ad-tag{margin-left:4px;vertical-align:middle;}
+
+.yonhapnews-wrap .yonhapnews-link{position:absolute;top:13px;right:19px;width:360px;text-align:right;padding:0;margin:0;}
+.yonhapnews-wrap .yonhapnews-link li{display:inline;vertical-align:top;padding-left:11px;margin-left:4px;background:url(//img.yonhapnews.co.kr/basic/svc/14_images/bar_1x11_dddddd.gif) 0 3px no-repeat;}
+.yonhapnews-wrap .yonhapnews-link li a{font-weight:bold;}
+
+.yonhapnews-wrap .yonhapnews01{float:left;width:319px;margin-top:-3px;}
+.yonhapnews-wrap .yonhapnews01 dt,
+.yonhapnews-wrap .yonhapnews01 .tit{margin:0 18px 10px 18px;font-weight:bold;font-size:16px;}
+.yonhapnews-wrap .yonhapnews01 dd,
+.yonhapnews-wrap .yonhapnews01 .lead{margin:0 18px;margin-top:-3px;line-height:1.7;letter-spacing:-1px;}
+
+.yonhapnews-wrap .yonhapnews02{float:left;}
+.yonhapnews-wrap .yonhapnews02 li{overflow:hidden;display:block;}
+.yonhapnews-wrap .yonhapnews02 li a{overflow:hidden;display:block;text-overflow:ellipsis;white-space:nowrap;}
+
+/* 전국 지방섹션 하단 최신 포토 */
+#localRecentPhoto{}
+
+/* 지방지 계약사 */
+.contractor-wrap{overflow:hidden;padding:15px 19px 3px;border:none;}
+.contractor-wrap h3,
+.contractor-wrap .tit-type03{float:left;width:109px;}
+.contractor-wrap li{float:left;margin-bottom:14px;padding-right:15px;}
+/* .contractor-wrap ul{float:left;width:475px;}
+.contractor-wrap li{float:left;display:none;margin-bottom:14px;padding-right:15px;} */
+
+.local-paper-list02{float:left;margin:13px 0 0;width:560px;padding:15px 20px 2px;background:#f4f4f4;border:1px solid #eee;}
+.local-paper-list02 li{width:140px;padding-right:0;margin-bottom:15px;}
+.local-paper-list02 li a{color:#555;font-size:13px;}
+
+/* 전국 영상 */
+.local-picture{}
+.local-picture h3{padding-left:27px;font-size:12px;color:#2556a7;margin:28px 0 15px 0;}
+
+/* 이슈 돋보기 메인*/
+.issue-zoom{}
+.issue-zoom ul li a{font-weight:bold;font-size:14px;}
+
+/* 이슈 돋보기 홈*/
+.issue-wrap{padding:0 18px 0 19px;}
+.issue-wrap .tl-box{height:33px;line-height:33px;padding-left:19px;height:33px;background:#525671;border:1px solid #41445a;margin-bottom:19px;color:#fff;font-size:16px;}
+.issue-wrap .tl-box a{color:#fff;font-size:16px;}
+.issue-wrap .tl-box .issue-num{margin-top:-31px;color:#b6b7c1;font-size:12px;text-align:right;padding-right:18px;}
+.issue-wrap .tl-box .issue-num li{display:inline;padding-left:9px}
+.issue-wrap .tl-box .issue-num strong{color:#fff;}
+
+.issue-main-wrap{overflow:hidden;border-top:1px solid #fff;border-bottom:1px solid #eee;margin:-1px 0 0 0;}/* 주요이슈 */
+.issue-main01{border-right:1px solid #eee;padding-right:24px;}
+.issue-main02{border-left:1px solid #eee;margin-left:-1px;padding-left:24px;}
+
+.issue-main{position:relative;float:left;width:443px;padding-bottom:30px;}
+
+.issue-main01 .btn_more{position:absolute;top:10px;right:41px;color:#a9abb8;}
+.issue-main02 .btn_more{position:absolute;top:10px;right:17px;color:#a9abb8;}
+
+.issue-main .issue-article{display:block;height:122px;margin-bottom:9px;padding:0 2px;}
+.issue-main .issue-article img{float:left;width:195px;height:122px;}
+.issue-main .issue-article span{float:right;width:226px;height:122px;color:#7d7d7d;}
+
+.issue-main .h-related{width:340px;float:left;}
+.issue-main .h-related a{font-weight:normal;}
+
+.issue-main-wrap .issue-num{float:left;width:95px;padding-top:33px;color:#666;}
+.issue-main-wrap .issue-num li{padding-bottom:10px;line-height:1.2;}
+
+.issue-list-wrap .issue-num{color:#444;margin-top:8px;}
+.issue-list-wrap .issue-num li{display:inline;padding-right:11px;}
+.issue-num strong{color:#444;}
+
+.issue-tab{overflow:hidden;margin-bottom:25px;}
+.issue-tab li{float:left;width:81px;height:31px;margin-right:1px;}
+.issue-tab li a{display:block;width:79px;height:30px;line-height:30px;background:#f5f5f5;border:1px solid #e2e2e2;border-bottom:none;text-align:center;}
+.issue-tab li a:hover,
+.issue-tab li a:focus,
+.issue-tab li a:active{background:#eef2fc;color:#5171b2;}
+.issue-tab li a.on{background:#fff;color:#333;border:1px solid #a5a5a5;border-bottom:none;font-weight:bold;}
+
+.issue-list-wrap{margin:38px 0 40px 0;}/* 최근 이슈 리스트 */
+.issue-list-wrap h4{padding:0 0 0 6px;font-size:12px;color:#2556a7;margin-bottom:5px;}
+.issue-list-wrap .issue-list{position:relative;z-index:101;border:1px solid #eee;border-left:none;margin-top:-1px;}
+.issue-list-wrap .issue-list:after{content:'';display:block;clear:both;font-size:0;line-height:0;height:0;overflow:hidden;}
+*:first-child+html .issue-list-wrap .issue-list{zoom:1;}
+.issue-list-wrap .issue{position:relative;z-index:102;float:left; width:233px;height:308px;border-left:1px solid #eee;border-right:1px solid #eee;margin-right:-1px;}
+
+.issue-list-wrap div{padding:19px;width:195px;height:270px;}
+.issue-list-wrap div.on{position:relative;z-index:103;top:-1px;left:-1px;padding:15px;width:194px;height:269px;border:5px solid #2556a7;}
+.issue-list-wrap dl{position:relative;z-index:104;}
+.issue-list-wrap dt{padding-top:129px;font-size:16px;color:#444;}
+.issue-list-wrap dt.noimg{padding:0;}
+.issue-list-wrap dd.poto{position:absolute;z-index:105;top:0;left:0;width:195px;height:122px;overflow:hidden;}
+.issue-list-wrap dd.poto img{width:195px;height:122px;}
+.issue-list-wrap dd.lead{margin-top:6px;line-height:1.5;color:#7d7d7d;}
+.issue-list-wrap dd.lead a{color:#7d7d7d;}
+
+/* 이슈 돋보기 - 사진 */
+.issue-list02-wrap{}
+.issue-list02-wrap .graphic{overflow:hidden;width:936px;margin:0 0 -18px -6px;padding-bottom:0;}
+.issue-list02-wrap .graphic .sector{width:143px;height:204px;float:left;padding:0 7px 0 6px;margin:0;}
+.issue-list02-wrap .graphic .sector strong{overflow:hidden;display:block;text-align:center;font-weight:normal;padding:0 10px;height:36px;}
+
+/* 이슈 돋보기 - 영상 */
+.issue-list03-wrap{}
+.issue-list03-wrap .photo-section04{width:945px;margin-left:-6px;}
+.issue-list03-wrap .photo-section04 .sector{padding:0 6px;}
+
+/* 이슈 돋보기 - 사진 날짜추가 20150424 */
+.issue-list02-wrap{}
+.issue-list02-wrap .graphic.graphic2{overflow:hidden;width:936px;margin:0 0 -18px -6px;padding-bottom:0;}
+.issue-list02-wrap .graphic.graphic2 .sector{width:143px;height:204px;float:left;padding:0 7px 0 6px;margin:0 0 27px;}
+.issue-list02-wrap .graphic.graphic2 .sector strong{overflow:hidden;display:block;text-align:center;font-weight:normal;padding:0 10px;height:36px;}
+.issue-list02-wrap .graphic.graphic2 .sector .data{display:block;padding:4px 0 0;text-align:center;color:#959595;font-size:11px;}
+.issue-list02-wrap .graphic.graphic2 .sector a:hover,
+.issue-list02-wrap .graphic.graphic2 .sector a:hover strong{color:#555;}
+/* 이슈 돋보기 - 영상 날짜추가 20150424 */
+.issue-list03-wrap{}
+.issue-list03-wrap .photo-section04-1{width:945px;margin-left:-6px;}
+.issue-list03-wrap .photo-section04-1 .sector{padding:0 6px;margin-bottom:27px;}
+.issue-list03-wrap .photo-section04-1 .data{display:block;padding:4px 0 0;text-align:center;color:#959595;font-size:11px;}
+.issue-list03-wrap .photo-section04-1 .sector a:hover,
+.issue-list03-wrap .photo-section04-1 .sector a:hover strong{color:#555;}
+
+/* 이슈 돋보기 - 기사 */
+.issue-list04-wrap{margin:-25px 0 40px 0;}
+.issue-list04-wrap ul{border-bottom:1px solid #eee;}
+.issue-list04-wrap .section02{padding:18px 19px;border:1px solid #eee;border-bottom:none;}
+/*.issue-list04-wrap .section02 a{display:inline-block;background:url(//img.yonhapnews.co.kr/basic/svc/14_images/bg_none.gif) 0 0 no-repeat;} 모바일 안드로이드에서 width값이 안 먹히는 현상 */
+.issue-list04-wrap .section02 .news-tl a{font-size:16px;}
+.issue-list04-wrap .section02 dl{overflow:hidden;}
+.issue-list04-wrap .section02 dl:after{content:'';display:block;clear:both;font-size:0;line-height:0;height:0;overflow:hidden;}
+.issue-list04-wrap .section02 dt{float:left;width:750px;}
+.issue-list04-wrap .section02 dt *{vertical-align:top;}
+.issue-list04-wrap .section02 dd.lead{float:left;width:750px;padding-top:8px;line-height:1.6;background:#fff;}
+.issue-list04-wrap .section02 dd.lead a{color:#7d7d7d;}
+.issue-list04-wrap .section02 dd.lead span{display:block;margin-top:10px;color:#7d7d7d;}
+.issue-list04-wrap .section02 dd.poto{float:right;width:120px;height:112px;padding:4px;margin:3px 0;overflow:hidden;border:1px solid #ddd;text-align:center;}
+.issue-list04-wrap .section02 dd.poto img{max-width:120px;max-height:112px;}
+
+/* 테마별 뉴스*/
+.etc-news-wrap{padding:0 19px;}
+
+/* 긴급뉴스 */
+.emg-list-wrap{margin:20px 0 40px 0;}
+.emg-list-wrap .emg-list{border-right:1px solid #eee;width:936px;overflow:hidden;}
+.emg-list-wrap .emg-list ul{position:relative;z-index:101;overflow:hidden;border-bottom:1px solid #eee;}
+.emg-list-wrap .emg-list:after{content:'';display:block;clear:both;font-size:0;line-height:0;height:0;overflow:hidden;}
+*:first-child+html .emg-list-wrap .emg-list{zoom:1;}
+.emg-list-wrap .emg{position:relative;z-index:102;float:left; width:467px;height:153px;border:1px solid #eee;margin:0 -1px -1px 0;}
+
+.emg-list div{padding:18px;width:430px;height:117px;}
+.emg-list div.on{position:relative;z-index:103;top:-1px;left:-1px;padding:14px;width:430px;height:116px;border:5px solid #2556a7;}
+.emg-list dl{position:relative;z-index:104;}
+.emg-list dt{font-size:16px;color:#444;line-height:1.3;}
+.emg-list dd.lead{margin-top:12px;line-height:1.5;}
+.emg-list dd.lead a{display:block;color:#7d7d7d;}
+.emg-list dd.lead span{display:block;color:#7d7d7d;margin-top:12px;}
+
+.emg-list dt,
+.emg-list dd{overflow:hidden;}
+
+.emg-list .emg-photo dt,
+.emg-list .emg-photo dd.lead{width:320px;}
+
+.emg-list .emg-photo dd.poto{position:absolute;top:0;right:0;z-index:105;width:75px;height:70px;padding:4px;border:1px solid #ddd;text-align:center;}
+.emg-list .emg-photo dd.poto img{max-width:75px;max-height:70px;}
+/*
+.emg-list .emg-photo dt{height:42px;}
+.emg-list .emg-photo dd a{height:36px;}
+.emg-list .emg-lead dt{height:21px;}
+.emg-list .emg-lead dd a{height:54px;}
+
+.emg-list .emg-photo dd.lead span{margin-top:12px;}
+.emg-list .emg-lead dd.lead span{margin-top:15px;}
+*/
+
+/* 톱뉴스 */
+.emg-list02-wrap{margin:20px 0 40px 0;}
+.emg-list02-wrap ul{border-bottom:1px solid #eee;}
+.emg-list02-wrap .section{padding:18px 19px;border:1px solid #eee;border-bottom:none;}
+/*.emg-list02-wrap .section a{display:inline-block;background:url(//img.yonhapnews.co.kr/basic/svc/14_images/bg_none.gif) 0 0 no-repeat;} 모바일 안드로이드에서 width값이 안 먹히는 현상 */
+.emg-list02-wrap .section .news-tl a{font-size:16px;}
+.emg-list02-wrap .section dl{overflow:hidden;}
+.emg-list02-wrap .section dl:after{content:'';display:block;clear:both;font-size:0;line-height:0;height:0;overflow:hidden;}
+.emg-list02-wrap .section dt{float:left;width:675px;}
+.emg-list02-wrap .section dt *{vertical-align:top;}
+.emg-list02-wrap .section dd.lead{float:left;width:675px;padding-top:8px;line-height:1.6;background:#fff;}
+.emg-list02-wrap .section dd.lead a{color:#7d7d7d;}
+.emg-list02-wrap .section dd.lead span{display:block;margin-top:10px;color:#7d7d7d;}
+.emg-list02-wrap .section dd.poto{float:right;width:195px;height:122px;padding:3px 0;text-align:center;}
+.emg-list02-wrap .section dd.poto img{max-width:195px;max-height:122px;}
+
+/* 많이 본 뉴스 */
+.emg-list03-wrap{margin:20px 0 40px 0;}
+.emg-list03-wrap .txt_info{text-align:right;color:#7d7d7d;margin:0 20px 5px 0;}
+.emg-list03-wrap ul{border-bottom:1px solid #eee;}
+.emg-list03-wrap .section{overflow:hidden;border:1px solid #eee;border-bottom:none;}
+/*.emg-list02-wrap .section a{display:inline-block;background:url(//img.yonhapnews.co.kr/basic/svc/14_images/bg_none.gif) 0 0 no-repeat;} 모바일 안드로이드에서 width값이 안 먹히는 현상 */
+.emg-list03-wrap .section .news-tl a{font-size:16px;}
+
+.emg-list03-wrap .section .num.first{color:#525671;}
+.emg-list03-wrap .section .num{float:left;width:82px;padding-top:72px;text-align:center;font-family:Verdana, Helvetica, sans-serif;font-size:24px;line-height:1;font-weight:bold;color:#bbb;letter-spacing:-2px;}
+.emg-list03-wrap .section dl{float:right;width:813px;padding:18px 19px;border-left:1px solid #eee;}
+.emg-list03-wrap .section dl:after{content:'';display:block;clear:both;font-size:0;line-height:0;height:0;overflow:hidden;}
+.emg-list03-wrap .section dt{float:left;width:620px;}
+.emg-list03-wrap .section dt *{vertical-align:top;}
+.emg-list03-wrap .section dd.lead{float:left;width:620px;padding-top:8px;line-height:1.6;background:#fff;color:#7d7d7d;}
+.emg-list03-wrap .section dd.lead a{color:#7d7d7d;}
+.emg-list03-wrap .section dd.lead span{display:block;margin-top:10px;color:#7d7d7d;}
+.emg-list03-wrap .section dd.poto{float:right;width:120px;height:112px;padding:4px;margin:3px 0;overflow:hidden;border:1px solid #ddd;text-align:center;}
+.emg-list03-wrap .section dd.poto img{max-width:120px;max-height:112px;}
+
+.emg-list04-wrap{position:relative;margin:90px 0 40px 0;}
+.emg-list04-wrap h5{position:absolute;top:7px;padding:0 0 0 6px;font-size:12px;color:#2556a7;}
+.emg-list04-wrap .txt_info{text-align:right;color:#7d7d7d;margin:8px 20px 5px 0;}
+.emg-list04-wrap ul{background:#525671;overflow:hidden;padding:14px 10px 16px 10px;}
+.emg-list04-wrap .section{float:left;width:183px;}
+.emg-list04-wrap .section .num{display:block;text-align:center;margin-bottom:11px;font-family:Verdana, Helvetica, sans-serif;font-size:24px;line-height:1;font-weight:bold;color:#bbb;letter-spacing:-2px;color:#75788c;}
+.emg-list04-wrap .section .num.first{color:#89a9ea;}
+.emg-list04-wrap .section a{display:block;width:132px;margin:0 auto;color:#fff;}
+.emg-list04-wrap .section a span{display:block;width:120px;height:120px;padding:4px 5px;border:1px solid #75788c;text-align:center;}
+.emg-list04-wrap .section a span img{max-width:120px;max-height:120px;}
+.emg-list04-wrap .section a strong{display:block;text-align:center;margin-top:9px;font-weight:normal;padding:0 10px;}
+
+.plugin-down{padding:30px;}
+.plugin-down ul{margin-top:10px;}
+.plugin-down li{background:url(//img.yonhapnews.co.kr/basic/svc/14_images/bul_2x2_cccccc.gif) 0 9px no-repeat;padding:2px 0 1px 9px;}
+
+/* 테마 - 주요뉴스/핫뉴스 확장형 */
+.list-theme01{}
+.list-theme01 .emg-photo dd.poto{overflow:hidden;width:70px;height:70px;padding:0;border:none;}
+.list-theme01 .emg-photo dd.poto a{}
+.list-theme01 .emg-photo dd.poto img{width:auto;height:70px;max-width:none;max-height:none;}
+
+/* 테마 - 톱뉴스/긴급뉴스 확장형 */
+.list-theme02{}
+.list-theme02 .section dd.poto{overflow:hidden;width:165px;height:122px;padding:0;}
+.list-theme02 .section dd.poto a{}
+.list-theme02 .section dd.poto img{width:auto;height:122px;max-width:none;max-height:none;}
+
+/* 테마 - 많이본뉴스 확장형 */
+.list-theme03{}
+.list-theme03 .section dd.poto{overflow:hidden;width:165px;height:122px;padding:0;border:none;}
+.list-theme03 .section dd.poto a{}
+.list-theme03 .section dd.poto img{width:auto;height:122px;max-width:none;max-height:none;}
+
+/* 핫뉴스 아이프레임*/
+.ifm-hot-news{margin-bottom:9px;}
+.sub-wrap .ifm-hot-news{display:block;clear:both;width:340px !important;}
+
+/* 주요포토 아이프레임 */
+iframe[title*='주요 포토 프레임']{display:block;}
+
+/* 스포츠메인 : 오늘의 경기 */
+.sport-zone01{overflow:hidden;padding:19px;}
+.sport-zone01 a{display:block;float:left;height:100px;text-align:center;font-weight:bold;font-size:14px;color:#555;text-decoration:none;}
+.sport-zone01 a .day{display:block;padding-top:53px;}
+.sport-zone01 a:hover .day{color:#db3699;text-decoration:none;}
+.sport-zone01 .sp01{width:149px;background:url(//img.yonhapnews.co.kr/basic/svc/14_images/bg_sports01.gif) 0 0 no-repeat;}
+.sport-zone01 .sp02{width:151px;background:url(//img.yonhapnews.co.kr/basic/svc/14_images/bg_sports02.gif) 0 0 no-repeat;}
+
+/* Y스페셜 */
+.iframe-yspecial{width:300px;}/* 기본 배너, 이미지타입 */
+
+.y-special-zone{position:relative;}
+.y-special-zone h2,
+.y-special-zone .tit-category{padding-bottom:12px;}
+.y-special-zone .tit-type01{display:none;}
+.y-special-zone .list{position:relative;}
+.y-special-zone .list li{position:absolute;height:67px;}
+.y-special-zone .list li a{overflow:hidden;display:block;}
+.y-special-zone .list li a:hover{text-decoration:none;}
+.y-special-zone .list li a:hover .tit,
+.y-special-zone .list li a:hover .txt{text-decoration:underline;}
+.y-special-zone .list .thumb{overflow:hidden;float:left;width:100px;height:67px;}
+.y-special-zone .list .thumb img{width:140%;}
+.y-special-zone .list .con{display:block;margin:-2px 0 0 110px;letter-spacing:-1px;}
+.y-special-zone .list .con .tit{display:block;color:#555;}
+.y-special-zone .list .con .txt{color:#666;}
+.y-special-zone .page-nation{position:absolute;right:100px;top:0;color:#666;}
+.y-special-zone button{display:inline-block;position:absolute;top:0;width:19px;height:19px;border:none;background:url(//img.yonhapnews.co.kr/basic/svc/14_images/2014btn_dir_yspecial.gif) 0 0 no-repeat;cursor:pointer;}
+.y-special-zone .btn-prev{right:72px;background-position:0 0;}
+.y-special-zone .btn-next{right:53px;width:18px !important;background-position:-19px 0;}
+.y-special-zone .btn-interactive{position:absolute;right:75px;top:0;z-index:101}
+.y-special-zone .btn-interactive a{color:#666;text-decoration:none;}
+.y-special-zone .btn_more{position:absolute;z-index:101;top:0;right:7px;color:#666;text-decoration:none;}
+
+.iframe-yspecial.type01{}/* 기사타입 */
+.iframe-yspecial.type01 .list li{position:relative !important;height:auto;}
+
+
+/* 한일수교 */
+/* .knj-diplomat{}
+.knj-diplomat .tit-category{}
+.knj-diplomat .list{overflow:hidden;width:300px;height:90px;margin:0 0 0 19px;padding-bottom:0;}
+.knj-diplomat .list li{padding:0;}
+.knj-diplomat .list li a{display:block;position:relative;left:0px;top:0px;height:90px;}
+.knj-diplomat .list .tit{padding:4px 0 0 114px;font-weight:bold;font-size:12px;vertical-align:top;}
+.knj-diplomat .list .poto{position:absolute;top:0;left:0;width:100px;height:75px;}
+.knj-diplomat .list .poto img{width:100px;height:75px;}
+.knj-diplomat .list .lead{padding-left:114px;}
+.knj-diplomat button{display:inline-block;position:absolute;top:12px;width:19px;height:19px;border:none;background:url(//img.yonhapnews.co.kr/basic/svc/14_images/2014btn_dir_yspecial.gif) 0 0 no-repeat;cursor:pointer;}
+.knj-diplomat .btn-prev{right:34px;background-position:0 0;}
+.knj-diplomat .btn-next{right:15px;width:18px !important;background-position:-19px 0;}
+.knj-diplomat .btn-interactive{position:absolute;right:75px;top:0;z-index:101}
+.knj-diplomat .btn-interactive a{color:#666;text-decoration:none;} */
+
+/* 뉴스레터 */
+.newsletter-con{height:430px;text-align:center;color:#4a4a4a;}
+.newsletter-con .newsletter-tit{padding:95px 0 30px 0;}
+.newsletter-con .newsletter-txt p{margin:0 0 30px 0}
+.newsletter-con .newsletter-txt p.info{margin:20px 0 30px 0}
+.newsletter-con .newsletter-txt strong.blue{color:#4363b4;}
+.newsletter-con .newsletter-txt div{padding:15px 0 0;}
+.newsletter-con .newsletter-txt div a{margin:0 2px;}
+
+/* 특집모음 */
+.special-wrap{padding:34px 0 50px 28px;}
+.special-wrap .h-years{overflow:hidden;height:42px;margin:0 0 0 22px;text-indent:-5000px;}
+.special-wrap .h-years.year2014{background:url(//img.yonhapnews.co.kr/basic/svc/00_ko/home/h_years2014.gif) no-repeat 0 0;}
+.special-wrap .h-years.year2015{background:url(//img.yonhapnews.co.kr/basic/svc/00_ko/home/h_years2015.png) no-repeat 0 0;}
+.special-wrap ul{overflow:hidden;margin-bottom:40px;}
+.special-wrap ul li{float:left;margin:0 0 22px 22px;text-align:center;}
+.special-wrap ul li a{display:block;position:relative;width:202px;height:271px;background:#fff;}
+.special-wrap ul li.w650 a{display:block;position:relative;width:650px;height:271px;background:#fff;}
+.special-wrap ul li a:hover{color:#828282 !important;}
+.special-wrap ul li a .box-border{display:block;position:absolute;left:0;top:0;width:200px;height:270px;border:1px solid #ededed;border-color:rgba(0,0,0,0.07);}
+.special-wrap ul li.w650 a .box-border{width:648px;height:270px;}
+.special-wrap ul li a .img-con{height:106px}
+.special-wrap ul li a .tit-con .tit{display:block;margin-top:30px;color:#5a5a5a;font-weight:bold;line-height:1.8;}
+.special-wrap ul li a .tit-con .txt-date{display:block;color:#828282;}
+
+/* 연합 데일리 뉴스브리핑 (YDB) */
+.ydb-zone{padding:30px 19px;}
+.ydb-zone .title-ydb{margin-bottom:40px;font-family:'Nanum Gothic';font-size:26px;line-height:1.3;font-weight:normal;}
+.ydb-zone .area{}
+.ydb-zone .txt-colum{}
+.ydb-zone .txt-colum p{margin:26px 0;font-size:16px;line-height:1.8;font-family:굴림, Gulim, Arial, AppleGothic, Sans-serif;}
+.ydb-zone .bnr-colum{margin:0 0 20px 20px;width:290px;float:right;}
+.ydb-zone .bnr-colum{}
+.ydb-zone .bnr-colum .bnr01{display:block;position:relative;width:290px;height:53px;margin-bottom:5px;background:url(//img.yonhapnews.co.kr/basic/home_english/2014/images/btn_ydb_click.gif) 0 0 no-repeat;}
+.ydb-zone .bnr-colum .bnr01 .txt{display:block;text-indent:-9999px;}
+.ydb-zone .bnr-colum .bnr01 .dd{position:absolute;right:14px;bottom:6px;font-size:12px;color:#fff;}
+.ydb-zone .bnr-colum .bnr02{margin-bottom:5px;}
+.ydb-zone .para-con01{margin-bottom:30px;}
+.ydb-zone .para-con01 .tit{display:block;margin-bottom:14px;font-weight:bold;font-size:16px;font-family:굴림, Gulim, Arial, AppleGothic, Sans-serif;}
+.ydb-zone .para-con01 p{position:relative;margin:0 0 8px;padding-left:16px;font-size:16px;line-height:1.2;}
+.ydb-zone .para-con01 .sym{display:block;position:absolute;left:0px;top:0px;.top:-3px;width:10px;height:10px;line-height:1.2;}
+
+/* 팝업 - 연합뉴스TV 라이브 */
+.popup-ytv-wrap{background:#e9e9e9;}
+.popup-ytv{width:916px;height:480px;background:url(../img/bg_popup_ytv01.png) no-repeat;}
+.popup-ytv .con{position:relative;width:100%;height:100%;}
+.popup-ytv iframe{position:absolute;left:128px;top:35px;width:680px;height:412px;}
+
+/* 팝업 - 카카오톡 기사제보 방법 */
+.popup-jebo-video{overflow:hidden;background:#000;}
+.popup-jebo-video>div{width:854px;margin:0 auto;}
+
+/* 가이드 코드 */
+.guide-code{}
+.guide-code .tree01{padding-left:15px;}
+.guide-code .tree02{padding-left:30px;}
+.guide-code .tree03{padding-left:45px;}
+
+.news-img-con{position:relative;overflow:hidden;display:block;width:138px !important; height:88px !important;}
+
+/* ---- 긴급뉴스 팝업 푸쉬허용 팝업 ---- */
+.push-pop-layer{display:none;}
+.popup-agree{width:360px; height:124px; background:#fff; border:1px solid #c5c5c5; position:fixed;top:320px;left:50%;box-shadow:0px 5px 6px #999;overflow:hidden;z-index:11;-webkit-transform:translate(-50%, -50%);-ms-transform:translate(-50%, -50%);-moz-transform:translate(-50%, -50%);-o-transform: translate(-50%, -50%);transform:translate(-50%, -50%);}
+.popup-agree a:nth-child(1){display:block;}
+
+.agree-close{color:#000;font-size:13px;height:18px;line-height:24px;position:relative;}
+html.en .agree-close button,html.zh .agree-close button,html.ja .agree-close button,html.es .agree-close button,html.fr .agree-close button{float:right;margin-right:5px;width:24px;height:18px;line-height:32px; cursor:pointer;background:url(/global/home/v01/img/btn_pop_close.png) no-repeat 0 3px;background-size:24px;}
+
+
+.agree-up{width:100%;height:68px;}
+.agree-up span{width:66px;height:66px;float:left;margin:0 13px 0 13px;border:1px solid #d1d1d1;position:relative;}
+.agree-up span img{width:67px;height:67px;position:absolute;}
+.agree-up p{float:left;width:255px;height:58px;display:inline-block;color:#3e3e3f;font-size:14px;margin-top:10px;}
+
+.agree-bottom{width:100%;height:36px;text-align:center;font-size:11px;color:#424242;}
+.agree-bottom button.pop-no{width:64px;border:1px solid #a6a6a6;float:right;margin:0 13px;cursor:pointer;padding:3px 0;}
+.agree-bottom button.pop-yes{width:64px;border:1px solid #a6a6a6;float:right;cursor:pointer;padding:3px 0;}
+
+
+html.ar .agree-close {color:#000;font-size:13px;height:18px;line-height:24px;position:relative;}
+html.ar .agree-close button{float:left;margin-left:5px;width:24px;height:18px;line-height:32px; cursor:pointer;background:url(/global/home/v01/img/btn_pop_close.png) no-repeat 0 3px;background-size:24px;}
+html.ar .agree-up span{width:66px;height:66px;float:right;margin:0 13px 0 18px;border:1px solid #d1d1d1;position:relative;}
+html.ar .agree-up p{float:right; width:261px; height:58px; display:inline-block; color:#3e3e3f; font-size:16px; margin-top:10px;direction: rtl;}
+html.ar .agree-bottom button.pop-no{width:64px; border:1px solid #a6a6a6; float:left; margin:0 13px; cursor:pointer;}
+html.ar .agree-bottom button.pop-yes{width:64px; border:1px solid #a6a6a6; float:left; cursor:pointer; }
+
+
+/* ---- 긴급뉴스 푸쉬팝업 ----*/
+.main2015 .popup-wrap,html.en .popup-wrap,html.zh .popup-wrap,html.ja .popup-wrap,html.es .popup-wrap,html.fr .popup-wrap{position:fixed;right:0;bottom:0;z-index:691;}
+.popup-push{display:none;width:360px;height:129px;background:#fff;border:1px solid #c5c5c5;position:relative;overflow:hidden;}
+.main2015 .popup-push > .popup-top,html.en .popup-push > .popup-top,html.zh .popup-push > .popup-top,html.ja .popup-push > .popup-top,html.es .popup-push > .popup-top,html.fr .popup-push > .popup-top{background:#0068d1;color:#ffffff;font-size:13px;line-height:24px;padding:0 3px 0 13px;}
+.popup-push > .popup-top > button{width:24px;height:18px;line-height:32px;float:right;cursor:pointer;background:url(/global/home/v01/img/btn_pop_close02.png) no-repeat 0 3px;background-size:24px;}
+.popup-push a{display:block;}
+
+.popup-box{height:83px;}
+.popup-left{background-size:50px;border:1px solid #d4d4d4;margin:0 14px 0 17px;float:left;width:50px;height:50px;padding:0px;overflow:hidden;}/* 수정시 예외처리된 아랍css도 수정해야함 (html.ar .popup-left) */
+.popup-left img{width:100%;height:100%;}
+
+.popup-right{float:left;}
+.popup-right p{font-size:14px;color:#3e3e3f;line-height:16px;height:34px;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;width:270px;text-overflow:ellipsis; font-weight:bold;letter-spacing:0px;margin-top:9px;margin-right:4px;}
+.popup-box{padding-top:22px;}
+
+html.ar .popup-wrap{position:fixed;left:0;bottom:0;z-index:101;}
+html.ar .popup-push > .popup-top{background:#0068d1;color:#ffffff;font-size:13px;line-height:24px;padding:0 13px 0 3px;}
+html.ar .popup-push > .popup-top > button{float:left;}
+html.ar .popup-left{background-size:50px;border:1px solid #d4d4d4;margin:0 17px;float:right;width:50px;height:50px;padding:0px;overflow:hidden;}
+html.ar .popup-right{float:left;}

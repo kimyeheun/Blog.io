@@ -1,0 +1,1015 @@
+;(function($) {
+	/***********************************************
+	* 온로드 실행 함수
+	************************************************/
+	$(function() {
+		var $winW = $(window).width();
+		var $winH = $(window).height();
+		$body = $('body');
+
+		/* common.js 선언 됨
+		$ytb = $('body[class*="body-ytb"]'); //유튜브 채널 섹션
+		$ytbSub = $('body[class*="body-ytb-sub"]'); //유튜브 채널 메인
+		$ytbList = $('body[class*="body-ytb-list"]'); //유튜브 채널 리스트
+		$ytbView = $('body[class*="body-ytb-view"]'); //유튜브 채널 본문
+		$channel = $('body[class*="page-channel"]');  //유튜브 채널 */
+
+		ars_items = '//ars.yna.co.kr/api/v2/youtube/playlistItems';
+		ars_search = '//ars.yna.co.kr/api/v2/youtube/search';
+		ars_videos = '//ars.yna.co.kr/api/v2/youtube/videos';
+		ars_channel = '//ars.yna.co.kr/api/v2/youtube/channels';
+
+		//연합뉴스 전체
+		var api01_yna_all = '?key=api1&playlistId=UUj3_t5p4L4aFsvdW3uHjnnw&part=snippet,status,contentDetails,statistics&relay=true';
+		var api03_know_all = '?key=api3&playlistId=UUR-L8oZkHzgDh1ahJhH2WDQ&part=snippet,status,contentDetails,statistics&relay=true';
+		var api04_tong_cul_all = '?key=api4&playlistId=UUHzW_7Mf8G0JxP4b0LoAd7A&part=snippet,status,contentDetails,statistics&relay=true';
+		var api04_tong_tech_all = '?key=api4&playlistId=UU9iULDnKYrLSjDgekRw_n9w&part=snippet,status,contentDetails,statistics&relay=true';
+		var api04_tong_living_all = '?key=api4&playlistId=UUXjpzeB8_4F5kSiQYU5Ekvg&part=snippet,status,contentDetails,statistics&relay=true';
+		var api06_yttv_all = '?key=api6&playlistId=UU-l8M5QwG0Rdb5MVlOVuFSA&part=snippet,status,contentDetails,statistics&relay=true';
+
+		//본문
+		var api01_view = '?key=api1&part=snippet,contentDetails,statistics&vid=';
+		var api03_view = '?key=api3&part=snippet,contentDetails,statistics&vid=';
+		var api04_view = '?key=api4&part=snippet,contentDetails,statistics&vid=';
+		var api06_view = '?key=api6&part=snippet,contentDetails,statistics&vid=';
+
+
+		/******** 유튜브 데이터 생성 ********/
+		/* YtbData 함수 파라미터 설명
+		 * YtbData.getVideos(ARS 데이터, 데이터 변수, 유튜브 영상 ID)
+		 * YtbData.getItems(ARS 데이터, 데이터 변수, 페이지명, 페이지 토큰) */
+
+		/* ##메인 */
+		if($main){
+			if($('.main-channel01').length > 0){
+				YtbData.getItems(ars_items + api01_yna_all, dataYtbYnaAll, 'yonhapnews');
+				YtbData.getItems(ars_items + api03_know_all, dataKnowAll, 'korea-now');
+				YtbData.getItems(ars_items + api04_tong_cul_all, dataTongCulAll, 'tongtongtv');
+				YtbData.getItems(ars_items + api04_tong_tech_all, dataTongTechAll, 'tongtong-tech');
+				YtbData.getItems(ars_items + api04_tong_living_all, dataTongLivingAll, 'tongtong-living');
+				YtbData.getItems(ars_items + api06_yttv_all, dataYttvAll, 'yontongtv');
+			}
+		}
+
+		/* ##채널 */
+		if ($ytbList.length > 0) {
+			///연합뉴스 전체
+			if(siteInfo.pageName == 'yonhapnews'){
+				YtbData.getItems(ars_items + api01_yna_all, dataYtbYnaAll, 'yonhapnews');
+				YtbData.getChannel(ars_channel+'?key=api1&channelId=UCj3_t5p4L4aFsvdW3uHjnnw&part=statistics,snippet',dataYtbChannel);
+			}
+
+			//코리아나우 전체
+			if(siteInfo.pageName == 'korea-now'){
+				YtbData.getItems(ars_items + api03_know_all, dataKnowAll, 'korea-now');
+				YtbData.getChannel(ars_channel+'?key=api3&channelId=UCR-L8oZkHzgDh1ahJhH2WDQ&part=statistics,snippet',dataYtbChannel);
+			}
+
+			//통통컬쳐 전체
+			if(siteInfo.pageName == 'tongtongtv'){
+				YtbData.getItems(ars_items + api04_tong_cul_all, dataTongCulAll, 'tongtongtv');
+				YtbData.getChannel(ars_channel+'?key=api4&channelId=UCHzW_7Mf8G0JxP4b0LoAd7A&part=statistics,snippet',dataYtbChannel);
+			}
+
+			//통통테크 전체
+			if(siteInfo.pageName == 'tongtong-tech'){
+				YtbData.getItems(ars_items + api04_tong_tech_all, dataTongTechAll, 'tongtong-tech');
+				YtbData.getChannel(ars_channel+'?key=api4&channelId=UC9iULDnKYrLSjDgekRw_n9w&part=statistics,snippet',dataYtbChannel);
+			}
+
+			//통통리빙 전체
+			if(siteInfo.pageName == 'tongtong-living'){
+				YtbData.getItems(ars_items + api04_tong_living_all, dataTongLivingAll, 'tongtong-living');
+				YtbData.getChannel(ars_channel+'?key=api4&channelId=UCXjpzeB8_4F5kSiQYU5Ekvg&part=statistics,snippet',dataYtbChannel);
+			}
+
+			//연통 전체
+			if(siteInfo.pageName == 'yontongtv'){
+				YtbData.getItems(ars_items + api06_yttv_all, dataYttvAll, 'yontongtv');
+				YtbData.getChannel(ars_channel+'?key=api6&channelId=UC-l8M5QwG0Rdb5MVlOVuFSA&part=statistics,snippet',dataYtbChannel);
+			}
+		}
+
+		/* ##본문
+		 * vid, section 파라미터가 없을 때는 api01 로 지정 (할당량)
+		 * api01 를 사용하기 때문에 dataYtbYnaAll 사용 */
+		if ($ytbView.length > 0) {
+			youtubeApi(); //Youtube API
+
+			var videoID = $query().vid;
+			var section = $query().section;
+			console.log(videoID,section);
+
+			if(section == undefined){
+				/* section Ⅹ, vid Ⅹ
+				 * YtbData.getItems 함수 실행 후 vid 정보 추출함 */
+				if (videoID == undefined) {
+					//url에 vid 파라미터가 없을 때 api01 할당, dataYtbYnaAll 최신 사용
+					YtbData.getItems(ars_items + api01_yna_all, dataYtbYnaAll, 'yonhapnews');
+					var timerCount = 0;
+					var dataTimer = setInterval(function(){
+						timerCount++;
+						if( timerCount > 60 ) {
+							clearInterval(dataTimer);
+						}
+						if( dataYtbYnaAll ) {
+							clearInterval(dataTimer);
+							videoID = dataYtbYnaAll[0].vid; //console.log("done", videoID);
+							YtbData.getVideos(ars_videos + api01_view, dataYtbView, 'yonhapnews', videoID);
+							//Youtube 본문 플레이어
+							YtbCon.articlePlayer(videoID);
+						}
+						else {
+							console.log("loading", timerCount );
+						}
+					}, 1000);
+				}
+				/* section Ⅹ, vid ○
+				 * YtbData.getVideos 함수 실행 후 섹션 정보 추출함 */
+				else{
+					//url에 vid 파라미터가 있을 때 api01 할당
+					YtbData.getVideos(ars_videos + api01_view, dataYtbView, '', videoID);
+					//Youtube 본문 플레이어
+					YtbCon.articlePlayer(videoID);
+
+					var timerCount = 0;
+					var dataTimer = setInterval(function(){
+						timerCount++;
+						if( timerCount > 60 ) {
+							clearInterval(dataTimer);
+						}
+						if( dataYtbView ) {
+							clearInterval(dataTimer);
+							section = dataYtbView[0].itemName; //console.log("done", section);
+							if(section == 'korea-now') {
+								YtbData.getItems(ars_items + api03_know_all, dataKnowAll, section);
+							}else if(section == 'tongtongtv') {
+								YtbData.getItems(ars_items + api04_tong_cul_all, dataTongCulAll, section);
+							}else if(section == 'tongtong-tech') {
+								YtbData.getItems(ars_items + api04_tong_tech_all, dataTongTechAll, section);
+							}else if(section == 'tongtong-living') {
+								YtbData.getItems(ars_items + api04_tong_living_all, dataTongLivingAll, section);
+							}else if(section == 'yontongtv') {
+								YtbData.getItems(ars_items + api06_yttv_all, dataYttvAll, section);
+							}else {
+								YtbData.getItems(ars_items + api01_yna_all, dataYtbYnaAll, section);
+							}
+						}
+						else {
+							console.log("loading", timerCount );
+						}
+					}, 1000);
+				}
+			}
+			else{
+				/* section ○, vid ○
+				 * section과 vid 가 있어 정상적인 함수 실행 */
+				if(section == 'korea-now'){
+					YtbData.getItems(ars_items + api03_know_all, dataKnowAll, 'korea-now');
+					YtbData.getVideos(ars_videos + api03_view, dataYtbView, 'korea-now', videoID);
+				}
+				else if(section == 'tongtongtv'){
+					YtbData.getItems(ars_items + api04_tong_cul_all, dataTongCulAll, 'tongtongtv');
+					YtbData.getVideos(ars_videos + api04_view, dataYtbView, 'tongtongtv', videoID);
+				}
+				else if(section == 'tongtong-tech'){
+					YtbData.getItems(ars_items + api04_tong_tech_all, dataTongTechAll, 'tongtong-tech');
+					YtbData.getVideos(ars_videos + api04_view, dataYtbView, 'tongtong-tech', videoID);
+				}
+				else if(section == 'tongtong-living'){
+					YtbData.getItems(ars_items + api04_tong_living_all, dataTongLivingAll, 'tongtong-living');
+					YtbData.getVideos(ars_videos + api04_view, dataYtbView, 'tongtong-living', videoID);
+				}
+				else if(section == 'yontongtv'){
+					YtbData.getItems(ars_items + api06_yttv_all, dataYttvAll, 'yontongtv');
+					YtbData.getVideos(ars_videos + api06_view, dataYtbView, 'yontongtv', videoID);
+				}
+				else{
+					YtbData.getItems(ars_items + api01_yna_all, dataYtbYnaAll, 'yonhapnews');
+					YtbData.getVideos(ars_videos + api01_view, dataYtbView, 'yonhapnews', videoID);
+				}
+				//Youtube 본문 플레이어
+				YtbCon.articlePlayer(videoID);
+			}
+		}
+
+	});/*온로드 실행 함수 end*/
+
+})(jQuery); /*end ($)*/
+
+/***********************************************
+* 유튜브
+1. 데이터 생성
+	- 콘텐츠 코너 작업
+	- 리스트 페이지 작업 고려해야함 (페이징 기능)
+2. 재생시간 가져오기
+3. 송고시간 변환
+4. 조회수
+5. 페이지 토큰
+	- 0~49 CDIQAQ
+	- 50~90 CDIQAA
+	- 100~149 CGQQAA
+	- 150~199 CJYBEAA
+	- 200~249 CMgBEAA
+	- 250~299 CPoBEAA
+***********************************************/
+
+/* Youtube API 로드
+ * common.js 에 함수 있음 */
+/* function youtubeApi(){
+	var tag = document.createElement('script');
+	//player_api 와 iframe_api 통일됨 (어느것을 사용해도 무방)
+	tag.src = "//www.youtube.com/player_api";
+	//tag.src = "//www.youtube.com/iframe_api";
+	var firstScriptTag = document.getElementsByTagName('script')[0];
+	firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+} */
+
+//배열 정렬
+var sortBy = function(field, reverse){
+	var key = function(x){ return x[field] };
+	reverse = [-1, 1][+!!reverse];
+	return function(a, b){
+		return a = key(a), b = key(b), reverse * ((a > b) - (b > a));
+	}
+}
+
+
+/***********************************************
+* 유튜브 데이터별 데이터 값 선언
+***********************************************/
+var dataYtbYnaAll = []; //연합뉴스 전체
+var dataKnowAll = []; //코리아나우 전체
+var dataTongCulAll = []; //통통컬쳐 전체
+var dataTongTechAll = []; //통통컬쳐 전체
+var dataTongLivingAll = []; //통통컬쳐 전체
+var dataYttvAll = []; //연통 전체
+var dataYtbView = []; //본문 조회
+var dataYtbChannel = []; //채널 조회
+
+
+/***********************************************
+* 유튜브 데이터 생성 함수
+***********************************************/
+var YtbData = {
+	data : [],
+	/* YtbData.apiParaml */
+	apiParam: function (val, apiName) {
+		var paramApi = apiName.split('?');
+		var paramA = paramApi[0].split('/'); //playlistItems, search 등 조회방법
+		var paramB = paramApi[1].split('&'); //옵션 파라미터 값
+		var paramAttr = paramA[paramA.length-1];
+		//데이터 조건확인
+		//contentDetails 데이터가 없을 경우 에러 발생
+		//api 조회 URL에서 데이터 조건 정보를 추출한다
+		for(var i=0; paramB.length; i++) {
+			var str = paramB[i].split('=');
+			if(str[0] == val){
+				if(str[1].indexOf(',') != -1){
+					return str[1].split(',');
+				}else{
+					return str[1];
+				}
+			}
+		}
+	},
+
+	/* YtbData.getItems(ARS 데이터, 데이터 변수, 페이지명, 페이지 토큰)
+	 * 코너 및 리스트용 데이터
+	 * 페이지 토큰은 현재 사용하지 않음 (기능 확장을 위해 준비해야 함) */
+	getItems : function(apiName,dataName,itemName,pageNum) {
+		//$.ajax 를 반복문 안에 사용할 경우 json 호출 시점이 달라 배열 순서가 안 맞거나 $.when 발생 시점이 틀려짐
+		var json = $.ajax({
+			url: apiName,
+			cache: true,
+			method: "GET",
+			dataType: "json",
+			success: function(data){
+				//console.log("ajax - success");
+				//console.log(data.items);
+				var partContDetail = false; //기본 part 에 contentDetails 없을 때
+				var partStatistics = false; //기본 part 에 statistics 없을 때
+
+				//@@보완해야하는 코드
+				var partVal = YtbData.apiParam('part', apiName);
+				if(typeof partVal != 'string'){
+					for(var i=0; i<partVal.length; i++){
+						if(partVal[i].match(/contentDetails/)) partContDetail = true;
+					};
+				}else{
+					if(partVal.match(/contentDetails/)) partContDetail = true;
+				}
+
+				//console.log(data.nextPageToken);
+				var number, vid, tit, desc, pub, thumbHigh, thumbMaxSta, dura, viewCount, nextPage;
+
+				//데이터 생성
+				$.each(data.items, function(i) {
+					//console.log(this.snippet, this.status);
+					//console.log(this.snippet);
+					vid = this.id; //this.snippet.resourceId.videoId || this.id;
+					tit = this.snippet.title;
+					desc = this.snippet.description;
+					pub = this.snippet.publishedAt;
+					pub = YtbData.convertLocalDate(pub);
+
+					//비공개, 삭제 상태 제외한 데이터 생성 Deleted video
+					if(tit != 'Private video'){
+						if(tit != 'Deleted video'){
+							//state,dura 의 경우 비공개, 삭제일 때 데이터 값이 없기 때문에 if 문 안으로 이동
+							number = i;
+							state = this.status.privacyStatus;
+
+							//재생시간
+							if(partContDetail){
+								dura = this.contentDetails.duration;
+								dura = YtbData.convertDura(dura);
+								dura = YtbData.toHHMMSS(dura); //console.log(number, dura);
+							}else dura = '';
+
+							//조회수
+							//@@보완해야하는 코드
+							viewCount = this.statistics.viewCount;
+
+							if(this.snippet.thumbnails != undefined){
+								var thumbHigh = this.snippet.thumbnails.high.url; //480x360
+								//var thumbStand = this.snippet.thumbnails.standard.url;  //640x480
+
+								if(this.snippet.thumbnails.maxres != undefined){
+									thumbMaxSta = this.snippet.thumbnails.maxres.url;
+								}
+								else if(this.snippet.thumbnails.standard != undefined){
+									thumbMaxSta = this.snippet.thumbnails.standard.url;
+								}
+								var makeData = {
+									number:number, itemName:itemName, vid:vid, title:tit, desc:desc, state:state,
+									pub:pub, imgHigh:thumbHigh, imgMax:thumbMaxSta,
+									duration:dura, viewCount:viewCount
+								};
+								dataName.push(makeData); //데이터 생성
+							}
+						}
+					}
+				});
+				//console.log(dataName);
+				//console.log(dataKnowEditor)
+			}
+		});
+		$.when(json).done(function(){
+			//console.log('YtbStart - init');
+			YtbStart.init(dataName);
+		});
+	},
+
+	/* YtbData.getVideos(ARS 데이터, 데이터 변수, 페이지명, 유튜브 영상 ID)
+	 * 본문용 데이터 */
+	getVideos : function(apiName,dataView,itemName,vid) {
+		var json = $.ajax({
+			url: apiName+vid,
+			cache: true,
+			method: "GET",
+			dataType: "json",
+			success: function(data){
+				//console.log("ajax - success");
+				//console.log(data.items);
+				var paramApi = apiName.split('?');
+				var paramA = paramApi[0].split('/'); //playlistItems, search 등 조회방법
+				var paramB = paramApi[1].split('&'); //옵션 파라미터 값
+				var paramAttr = paramA[paramA.length-1];
+				var partContDetail = false; //기본 part 에 contentDetails 없을 때
+				var partStatistics = false; //기본 part 에 statistics 없을 때
+
+				//@@보완해야하는 코드
+				var partVal = YtbData.apiParam('part', apiName);
+				if(typeof partVal != 'string'){
+					for(var i=0; i<partVal.length; i++){
+						if(partVal[i].match(/contentDetails/)) partContDetail = true;
+					};
+				}else{
+					if(partVal.match(/contentDetails/)) partContDetail = true;
+				}
+
+				var number, vid, tit, desc, channel, pub, thumbHigh, thumbMaxSta, dura, viewCount;
+
+				$.each(data.items, function(i) {
+					//console.log(this.snippet, this.status);
+					//console.log(this.snippet);
+					vid = this.id; //this.snippet.resourceId.videoId || this.id;
+					tit = this.snippet.title;
+					desc = this.snippet.description;
+					channel = this.snippet.channelId;
+					pub = this.snippet.publishedAt;
+					pub = YtbData.convertLocalDate(pub);
+
+					if(itemName == ''){
+						if(channel == 'UCj3_t5p4L4aFsvdW3uHjnnw') itemName = 'yonhapnews';
+						else if(channel == 'UCR-L8oZkHzgDh1ahJhH2WDQ') itemName = 'korea-now';
+						else if(channel == 'UCHzW_7Mf8G0JxP4b0LoAd7A') itemName = 'tongtongtv';
+						else if(channel == 'UC9iULDnKYrLSjDgekRw_n9w') itemName = 'tongtong-tech';
+						else if(channel == 'UCXjpzeB8_4F5kSiQYU5Ekvg') itemName = 'tongtong-living';
+						else if(channel == 'UC-l8M5QwG0Rdb5MVlOVuFSA') itemName = 'yontongtv';
+					}
+
+					//비공개, 삭제 상태 제외한 데이터 생성 Deleted video
+					if(tit != 'Private video'){
+						if(tit != 'Deleted video'){
+							//state 본문 정보에 없음
+							number = i;
+
+							//재생시간
+							if(partContDetail){
+								dura = this.contentDetails.duration;
+								dura = YtbData.convertDura(dura);
+								dura = YtbData.toHHMMSS(dura); //console.log(number, dura);
+							}else dura = '';
+
+							//조회수
+							//@@보완해야하는 코드
+							viewCount = this.statistics.viewCount;
+
+							if(this.snippet.thumbnails != undefined){
+								var thumbHigh = this.snippet.thumbnails.high.url; //480x360
+								//var thumbStand = this.snippet.thumbnails.standard.url;  //640x480
+
+								if(this.snippet.thumbnails.maxres != undefined){
+									thumbMaxSta = this.snippet.thumbnails.maxres.url;
+								}
+								else if(this.snippet.thumbnails.standard != undefined){
+									thumbMaxSta = this.snippet.thumbnails.standard.url;
+								}
+
+								var makeData = {
+									number:number, vid:vid, title:tit, desc:desc, channel:channel,
+									pub:pub, imgHigh:thumbHigh, imgMax:thumbMaxSta,
+									duration:dura, viewCount:viewCount, itemName:itemName
+									//state:state
+								};
+								dataView.push(makeData); //데이터 생성
+							}
+						}
+					}
+				});
+				//console.log(dataView);
+			}
+		});
+		$.when(json).done(function(){
+			//console.log('YtbStart - view');
+			YtbStart.view(dataView);
+		});
+	},
+
+	/* YtbData.getChannel(ARS 데이터, 데이터 변수)
+	 * 채널 데이터 */
+	getChannel : function(apiName,dataName) {
+		var json = $.ajax({
+			url: apiName,
+			cache: true,
+			method: "GET",
+			dataType: "json",
+			success: function(data){
+
+				var subscr,subscrTF;
+				//데이터 생성
+				$.each(data.items, function(i) {
+					//console.log(this.statistics);
+					subscr = this.statistics.subscriberCount;
+					subscrTF = this.statistics.hiddenSubscriberCount;
+
+					var makeData = {
+						subscriberCount:subscr, hiddenSubscriberCount:subscrTF
+					};
+					dataName.push(makeData); //데이터 생성
+
+				});
+				//console.log(dataName);
+			}
+		});
+		$.when(json).done(function(){
+			//console.log('YtbStart - init');
+			YtbCon.subscr(dataName);
+		});
+	},
+
+	/* YtbData.convertLocalDate
+	 * 송고시간 - 한국 표준시 변환 (24시간, yyyy-mm-dd hh:mm) */
+	convertLocalDate: function (val,mode) { //console.log(val);
+		//var val = val.replace(/-/g,"/");
+		var date = new Date(val);
+		var dd = date.getDate();
+		if(dd < 10) dd = '0'+dd;
+		var mm = date.getMonth() + 1;
+		if(mm < 10) mm = '0'+mm;
+		var yy = date.getFullYear();
+		var hh = date.getHours();
+		if(hh < 10) hh = '0'+hh;
+		var min = date.getMinutes();
+		if(min < 10) min = '0'+min;
+		var ss = date.getSeconds();
+		var ms = date.getMilliseconds();
+		//console.log(yy+'-'+mm+'-'+dd+' '+hh+':'+min);
+
+		if (mode == 'yymmdd') return yy+'-'+mm+'-'+dd;
+		else if (mode == 'hhmm') return hh+':'+min;
+		else return yy+'-'+mm+'-'+dd+' '+hh+':'+min;
+	},
+
+	/* YtbData.convertDura
+	 * 재생시간 초단위 변환 */
+	convertDura: function (val) {
+		var reptms = /^PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?$/;
+		var hours = 0, minutes = 0, seconds = 0, totalseconds;
+		if (reptms.test(val)) {
+			var matches = reptms.exec(val);
+			if(matches[1]) hours = Number(matches[1]);
+			if(matches[2]) minutes = Number(matches[2]);
+			if(matches[3]) seconds = Number(matches[3]);
+			totalseconds = hours * 3600  + minutes * 60 + seconds;
+		}
+		return totalseconds;
+	},
+
+	/* YtbData.toHHMMSS
+	 * 재생시간 시간단위 변환 */
+	toHHMMSS : function(val){
+		var sec_num = parseInt(val, 10)
+		var hours   = Math.floor(sec_num / 3600) % 24
+		var minutes = Math.floor(sec_num / 60) % 60
+		var seconds = sec_num % 60
+
+		if(hours <= 0){
+			if (minutes < 10) {minutes = "0"+minutes;}
+			if (seconds < 10) {seconds = "0"+seconds;}
+			return [minutes,seconds].join(":")
+		}else{
+			if (hours   < 10) {hours  = "0"+hours;}
+			if (minutes < 10) {minutes = "0"+minutes;}
+			if (seconds < 10) {seconds = "0"+seconds;}
+			return [hours,minutes,seconds].join(":");
+		}
+	}
+} /* YTB end */
+
+
+/***********************************************
+* 유튜브 코너 및 본문 콘텐츠 함수
+***********************************************/
+var YtbCon = {
+	/* YtbCon.pClick
+	 * (코너) 클릭시 유튜브 바로 재생 */
+	pClick : function(conName) {
+		$(conName+' .btn-play').on('click vclick', function(){
+			var $self = $(this);
+			var $item = $self.parents('.item-box');
+			var $ifm = $item.find('.iframe-ytb');
+
+			stopIframe();
+
+			var src = $ifm.attr("src");
+			$ifm.attr("src",srcReplace(src, 'play'));
+			setTimeout(function(){
+				$item.addClass('playing');
+			} , 300);
+		});
+
+		function stopIframe(){
+			$('body').find('.iframe-ytb').each(function(i){
+				//console.log($(this));
+				var $self = $(this);
+				var $item = $self.parents('.item-box');
+
+				if ($item.hasClass('playing')) {
+					$(this).parents('.item-box').removeClass('playing');
+					var src = $(this).attr("src");
+					//console.log(srcReplace(src, 'stop'));
+					$(this).attr('src', srcReplace(src, 'stop'));
+				}
+			});
+		}
+
+		function srcReplace(str, mode){
+			if (mode == 'stop') { //stop
+				return str.replace(/(autoplay=[0-9])/g,'autoplay=0');
+			}else{ //play
+				return str.replace(/(autoplay=[0-9])/g,'autoplay=1');
+			}
+		}
+	},
+
+	/* YtbCon.category
+	 * (본문) 섹션카테고리 */
+	category : function() {
+		var cate = $query().section;
+		var el = '.title-article01';
+		var anchor = null;
+		if (window.location.host == 'koreanow.com' || window.location.host == 'www.koreanow.com') var anchor = '<a href="'+cate+'.html" class="category">';
+		else var anchor = '<a href="/korea_now/'+cate+'.html" class="category">';
+
+		switch(cate){
+			case 'news':
+				$(anchor+'<span class="txt">Latest</span></a>').prependTo(el);
+				break;
+			case 'popular':
+				$(anchor+'<span class="txt">Popular</span></a>').prependTo(el);
+				break;
+			case 'daily-headlines':
+				$(anchor+'<span class="txt">Daily &amp; 1 Minute News</span></a>').prependTo(el);
+				break;
+			case 'features':
+				$(anchor+'<span class="txt">Features</span></a>').prependTo(el);
+				break;
+			case 'north-korea':
+				$(anchor+'<span class="txt">North Korea</span></a>').prependTo(el);
+				break;
+			case 'k-culture':
+				$(anchor+'<span class="txt">K-Culture</span></a>').prependTo(el);
+				break;
+			case 'k-pop':
+				$(anchor+'<span class="txt">K-Pop</span></a>').prependTo(el);
+				break;
+			case 'bts':
+				$(anchor+'<span class="txt">BTS</span></a>').prependTo(el);
+				break;
+			case 'editors-pick':
+				$(anchor+'<span class="txt">Editor&apos;s Pick</span></a>').prependTo(el);
+				break;
+			default:
+				$('<a href="news.html" class="category"><span class="txt">Latest</span></a>').prependTo(el);
+				break;
+		}
+	},
+
+	/* YtbCon.mainList
+	 * (메인) 채널 리스트 */
+	mainList : function(data, item) {
+		//console.log(data);
+		var arrDig = [], dataDig = [], digVid;
+		if(item == 'yna'){
+			//console.log(item);
+			//#D 유튜브 기사 추출
+			$('#mainChannel01 [class*="digital"]').each(function(i){
+				digVid = $(this).find('.item-box01').attr('data-youtube').replace(/(https:\/\/youtu\.be\/)(.*)/,'$2'); //console.log(digVid);
+				arrDig.push(digVid);
+			});
+
+			//#D 유튜브 기사 제거 작업
+			$(data).each(function(i){
+				if(i < 5){
+					if (arrDig[0] != data[i].vid && arrDig[1] != data[i].vid) {
+						//console.log(data[i]);
+						dataDig.push(data[i]);
+					}
+				}
+			});
+			dataDig.sort(sortBy('pub', false)); //publishedAt 순 정렬
+			//console.log(dataDig);
+			$("#ytblistTemp02").tmpl(dataDig[0]).appendTo('.main-channel01 .list .li.'+item+'01');
+			$("#ytblistTemp02").tmpl(dataDig[1]).appendTo('.main-channel01 .list .li.'+item+'02');
+			$("#ytblistTemp02").tmpl(dataDig[2]).appendTo('.main-channel01 .list .li.'+item+'03');
+		}
+		else{
+			data.sort(sortBy('pub', false)); //publishedAt 순 정렬
+			$("#ytblistTemp02").tmpl(data[0]).appendTo('.main-channel01 .list .li.'+item+'01');
+			$("#ytblistTemp02").tmpl(data[1]).appendTo('.main-channel01 .list .li.'+item+'02');
+			$("#ytblistTemp02").tmpl(data[2]).appendTo('.main-channel01 .list .li.'+item+'03');
+		}
+
+		setTimeout(function(){
+			Master.imgLiquid('.main-channel01 .list','center');
+		} , 500);
+	},
+
+	/* YtbCon.articlePlayer
+	 * (본문) 유튜브 플레이어 */
+	articlePlayer :function(vid){
+		var viewID = vid; //console.log(viewID);
+		var viewEl = 'viewYtb';
+		function onYouTubeIframeAPIReady() {
+			ytPlayer = new YT.Player(viewEl, {
+				videoId: viewID,
+				host: 'https://www.youtube.com', //postMessage target origin 'https://' error
+				playerVars: {
+					'autoplay': 0, 'autohide':1, 'controls': 1, 'showinfo': 1, 'playsinline': 1,
+					'rel': 0, 'mute': 0, 'wmode': 'transparent', 'fs': 0
+				},
+				events: {
+					'onReady': onPlayerReady,
+					'onStateChange': onPlayerStateChange
+				}
+			});
+		}
+
+		function onPlayerReady(event) {
+			console.log('onPlayerReady 재생');
+			//event.target.playVideo();
+			ytPlayer.mute();
+		}
+
+		var done = false;
+		function onPlayerStateChange(event) {
+			if (event.data == YT.PlayerState.PLAYING && !done) {
+				done = true;
+			} else if(event.data == YT.PlayerState.ENDED){
+				endYoutube();
+			}
+		}
+		function stopVideo(event) {
+			console.log('Youtube stop');
+			ytPlayer.stopVideo();
+		}
+		function endYoutube(){
+			console.log('Youtube End');
+			//ytPlayer.playVideo();
+		}
+
+		setTimeout(function(){
+			onYouTubeIframeAPIReady();
+		} , 500);
+	},
+
+	/* YtbCon.articleBody
+	 * (본문) 기사정보 */
+	articleBody : function(data) {
+		//console.log('YtbCon.articleBody');
+		var player;
+		$('#articleTitleTemp').tmpl(data[0]).prependTo('.title-article01');
+		$('#articleBodyTemp').tmpl(data[0]).prependTo('.story-news');
+		$('#shareTemp').tmpl(data[0]).appendTo('.option-box');
+
+		$.each($('.story-news p'), function(idx, tag) {
+			var $self = $(this); //console.log(idx, tag);
+			$self.html($self.html().autoLink({
+				//target: '_blank', rel: 'nofollow', class: 'link'
+				target: '_blank', class: 'link'
+			}));
+		});
+		//YtbCon.category();
+	},
+
+	/* YtbCon.articlelatest
+	 * (본문) 하단 최신 리스트 */
+	articlelatest : function(data) {
+		//console.log(data);
+		data.sort(sortBy('pub', false)); //publishedAt 순 정렬
+		$(data).each(function(i){
+			if(i < 6){
+				$("#ytblistTemp01").tmpl(data[i]).appendTo('.box-ytb-list01 .list');
+			}
+		});
+		setTimeout(function(){
+			Master.imgLiquid('.box-ytb-list01','center');
+		} , 300);
+	},
+
+	/* YtbCon.pageActive
+	 * (본문) 기사정보 */
+	pageActive : function(data) {
+		//console.log('YtbCon.pageActive');
+		var active = data[0].itemName;
+		if(active == 'korea-now') active = 'know';
+		else if(active == 'tongtongtv') active = 'tong-culture';
+		else if(active == 'tongtong-tech') active = 'tong-tech';
+		else if(active == 'tongtong-living') active = 'tong-living';
+		else if(active == 'yontongtv') active = 'yttv';
+		else active = 'yna';
+		//console.log(active);
+
+		$('.visual-type01 .list .btn-type06.'+active).addClass('active');
+		$('.subscribe-zone .txt-type02.'+active).removeClass('hide');
+	},
+
+	/* YtbCon.subscr
+	 * (본문) 기사정보 */
+	subscr : function(data) {
+		//console.log('YtbCon.subscr', data);
+		$(data).each(function(i){
+			if(i < 1){
+				$("#ytbSubscrTemp").tmpl(data[i]).appendTo('.visual-type01 .info-box01');
+			}
+		});
+	},
+
+}
+
+
+/***********************************************
+* 유튜브 리스트 콘텐츠 함수
+***********************************************/
+var YtbList = {
+	page_limit: 5, //페이징 수
+	page_show: 12, //공통 리스트 노출 건수 : 한페이지당 출력 개수
+	page_main: 12, //메인 리스트 노출 건수 : 첫페이지만 21 개 출력 (동일할때 같은 데이터 입력)
+	//total: 300,
+	linkList : '',
+
+	/* YtbList.makelist */
+	makelist : function(data,pageName) {
+		//console.log(data);
+		data.sort(sortBy('pub', false)); //publishedAt 순 정렬
+
+		var total = data.length;
+		var page = $query().page; //console.log(page);
+		if(page == undefined) page = 1;
+		var show = YtbList.page_show;
+		var main = YtbList.page_main;
+		YtbList.linkList = '/channel/' + pageName;
+
+		if (show == main) {
+			//페이지당 출력 개수가 변동이 없는 경우
+			var pageStart = Math.abs((show * page) - show);
+			var pageItems = show * page;
+		}else{
+			//페이지당 출력 개수가 변동이 있는 경우
+			if(page == 1){
+				var pageStart = 1;
+				//var pageStart = Math.abs((main * page) - main);
+				var pageItems = main * page;
+				//console.log('pageStart '+pageStart, 'pageItems '+pageItems);
+			}else {
+				//$('.sub-topnews').hide();
+				var pageStart = Math.abs((show * page) - show - (show - main));
+				var pageItems = show * page - (show - main);
+				if (pageItems >= total) pageItems = total;
+				//console.log('pageStart '+pageStart, 'pageItems '+pageItems);
+			}
+		}
+
+		//pageItems와 데이터 전체 건수 비교
+		var pageEnd = (total < pageItems) ? total : pageItems;
+		for(var i=pageStart;i<pageEnd;i++){
+			//console.log(data[i]);
+			$("#ytblistTemp01").tmpl(data[i]).appendTo('.box-ytb-list01 .list');
+		}
+
+		setTimeout(function(){
+			Master.imgLiquid('.box-ytb-list01','center');
+		} , 300);
+		YtbList.makePaging(page, total);
+	},
+
+	/* YtbList.makePaging */
+	makePaging: function(a, b) { // a = 현재 페이지(활성화), b = 전체 기사 개수
+		var c = Math.floor((a - 1) / YtbList.page_limit) * YtbList.page_limit + 1;
+		var d = Math.ceil(b / YtbList.page_show);
+		var e = c > 1 ? c - YtbList.page_limit : 1;
+		var f = (c + YtbList.page_limit < d ? c + YtbList.page_limit : d);
+		var g = '';
+		//var previmg = '//img.yonhapnews.co.kr/basic/home_english/2013/images/btn_pg_pre.gif';
+		//var nextimg = '//img.yonhapnews.co.kr/basic/home_english/2013/images/btn_pg_next.gif';
+		//console.log(c, d, e, f);
+
+		if (b < 1 || a > d || a < 1) $('.paging').html('');
+		else {
+			//if (a != 1) g += '<a href="' + YtbList.linkList + '?page=' + e + '" class="page-num prevPage"><img src="'+ previmg +'" alt="previous page"></a>\r\n';
+			for (var i = c; i < c + YtbList.page_limit; i++) {
+				if (i > d) break;
+				if (i == a) g += '<strong class="num on">' + a + '</strong>\r\n';
+				else g += '<a class="num" href="' + YtbList.linkList + '?page=' + i + '">' + i + '</a>\r\n'
+			}
+			//if (a != YtbList.page_limit) g += '<a href="' + YtbList.linkList + '?page=' + 3 + '" class="page-num nextPage"><img src="'+ nextimg +'" alt="next page"></a>\r\n';
+		}
+		$('.paging').html(g);
+	}
+};
+
+
+/***********************************************
+* 페이지 실행함수
+- YtbData 함수의 ajax 성공 시 콜백함수
+***********************************************/
+var YtbStart = {
+	/* YtbStart.init */
+	init : function(dataName) {
+		if($main){
+			if($('.main-channel01').length > 0){
+				switch(dataName){
+					case dataYtbYnaAll :
+						YtbCon.mainList(dataYtbYnaAll,'yna');
+						break;
+					case dataKnowAll :
+						YtbCon.mainList(dataKnowAll,'know');
+						break;
+					case dataTongCulAll :
+						YtbCon.mainList(dataTongCulAll,'tong-culture');
+						break;
+					case dataTongTechAll :
+						YtbCon.mainList(dataTongTechAll,'tong-tech');
+						break;
+					case dataTongLivingAll :
+						YtbCon.mainList(dataTongLivingAll,'tong-living');
+						break;
+					case dataYttvAll :
+						YtbCon.mainList(dataYttvAll,'yttv');
+						break;
+				}
+				setTimeout(function(){
+					$('.main-channel01 .list-type117').addClass('show');
+					//Master.slideSlick01('#mainChannel01', 'slick-pager02', 4, 4, 300, false);
+					Master.slideSlick02('#mainChannel01', 'slick-pager02', 4, 4, 300, false, '', true);
+				} , 500);
+			}
+		}
+
+		/* ##채널 */
+		if ($ytbList.length > 0) {
+			///연합뉴스 전체
+			if(siteInfo.pageName == 'yonhapnews'){
+				switch(dataName){
+					case dataYtbYnaAll :
+						if($('.box-ytb-list01').length == 1) YtbList.makelist(dataYtbYnaAll,'yonhapnews');
+						YtbCon.pageActive(dataYtbYnaAll);
+						break;
+				}
+			}
+
+			//코리아나우 전체
+			if(siteInfo.pageName == 'korea-now'){
+				switch(dataName){
+					case dataKnowAll :
+						if($('.box-ytb-list01').length == 1) YtbList.makelist(dataKnowAll,'korea-now');
+						YtbCon.pageActive(dataKnowAll);
+						break;
+				}
+			}
+
+			//통통컬쳐 전체
+			if(siteInfo.pageName == 'tongtongtv'){
+				switch(dataName){
+					case dataTongCulAll :
+						if($('.box-ytb-list01').length == 1) YtbList.makelist(dataTongCulAll,'tongtongtv');
+						YtbCon.pageActive(dataTongCulAll);
+						break;
+				}
+			}
+
+			//통통테크 전체
+			if(siteInfo.pageName == 'tongtong-tech'){
+				switch(dataName){
+					case dataTongTechAll :
+						if($('.box-ytb-list01').length == 1) YtbList.makelist(dataTongTechAll,'tongtong-tech');
+						YtbCon.pageActive(dataTongTechAll);
+						break;
+				}
+			}
+
+			//통통리빙 전체
+			if(siteInfo.pageName == 'tongtong-living'){
+				switch(dataName){
+					case dataTongLivingAll :
+						if($('.box-ytb-list01').length == 1) YtbList.makelist(dataTongLivingAll,'tongtong-living');
+						YtbCon.pageActive(dataTongLivingAll);
+						break;
+				}
+			}
+
+			//연통 전체
+			if(siteInfo.pageName == 'yontongtv'){
+				switch(dataName){
+					case dataYttvAll :
+						if($('.box-ytb-list01').length == 1) YtbList.makelist(dataYttvAll,'yontongtv');
+						YtbCon.pageActive(dataYttvAll);
+						break;
+				}
+			}
+		}
+		/* ##본문 */
+		if($ytbView.length > 0){
+			//유튜브
+			switch(dataName){
+				case dataYtbYnaAll :
+					if($('.box-ytb-list01').length == 1) YtbCon.articlelatest(dataYtbYnaAll);
+					break;
+				case dataKnowAll :
+					if($('.box-ytb-list01').length == 1) YtbCon.articlelatest(dataKnowAll);
+					break;
+				case dataTongCulAll :
+					if($('.box-ytb-list01').length == 1) YtbCon.articlelatest(dataTongCulAll);
+					break;
+				case dataTongTechAll :
+					if($('.box-ytb-list01').length == 1) YtbCon.articlelatest(dataTongTechAll);
+					break;
+				case dataTongLivingAll :
+					if($('.box-ytb-list01').length == 1) YtbCon.articlelatest(dataTongLivingAll);
+					break;
+				case dataYttvAll :
+					if($('.box-ytb-list01').length == 1) YtbCon.articlelatest(dataYttvAll);
+					break;
+			}
+		}
+	},
+
+	/* YtbStart.view */
+	view : function(dataView) {
+		/* ##본문 */
+		if($ytbView.length > 0){
+			YtbCon.articleBody(dataView);
+			YtbCon.pageActive(dataView); //console.log(dataView);
+
+			//SNS 공유
+			$.getScript('//developers.kakao.com/sdk/js/kakao.min.js', function() {
+				Kakao.init('645e607ecf562b7a571552649d2fd228');
+			});
+			SNS.init('.share-script','.option-box','https://youtu.be/');
+
+		}
+	}
+}

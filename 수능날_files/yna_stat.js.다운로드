@@ -1,0 +1,31 @@
+/** --------------------------------------------------------------
+ * ModuleName  : YNA Stat Module v0.0.1
+ * Developer   : SeoulSystem.corp(PTH)
+ * DevLanguage : Javascriptz
+ * BuildDate   : 2018.06.15
+ * Information : 국문 모바일, 국문 PC, 다국어 모바일, 다국어 PC 에서 통계를 수집한다.
+ * -------------------------------------------------------------- */
+
+var prefix = "";
+
+(function(){
+    var hostName = window.location.hostname;
+    if( hostName.indexOf('qa') !== -1 || hostName.indexOf('qa-') !== -1){
+        prefix = "qa-";
+    }else if( hostName.indexOf('dev') !== -1 || hostName.indexOf('dev-') !== -1){
+        prefix = "dev-";
+    }
+}());
+
+if(typeof window.SID === "undefined" || window.SID == ''){
+    window.SID = (function(w){return (w.location)?w.location.origin.split('//')[1]:undefined;})(window);
+}
+
+if(typeof RD_DOMAIN === "undefined" || RD_DOMAIN == ''){
+    RD_DOMAIN =  "//"+ prefix +"rd.yna.co.kr/";
+}
+
+<!--독자피드백-->
+var _eopt = window.SID;
+var _track = "//"+ prefix + "eas.yna.co.kr/col/col";
+(function(src) {var d=document, g=d.createElement('script'), s=d.getElementsByTagName('head')[0];g.type='text/javascript'; g.async=true; g.defer=true; g.src=src; s.appendChild(g);})(RD_DOMAIN + 'global/js/eas/eas.min.js');

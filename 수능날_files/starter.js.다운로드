@@ -1,0 +1,42 @@
+// !!! start.js must be written in es5 and compatible with IE 9 at now (2020-11-26)
+// !!! so do not use es6 codes
+(function() {
+    // function onload(e, f) {
+    //     e.onload = e.onerror = function () {
+    //         typeof f === 'function' && f();
+    //         e.onload = e.onerror = null;
+    //     };
+    //
+    //     e.onreadystatechange = function () {
+    //         if (e.onload != null
+    //             && (e.readyState === "complete" || e.readyState === "loaded")) {
+    //             e.onload();
+    //             e.onreadystatechange = null;
+    //         }
+    //     }
+    // }
+
+    function addScript(url, func) {
+        var s = document.createElement("script");
+        if (s) {
+            s.src = url;
+            s.async = true;
+            if (typeof func === 'function') {
+                s.addEventListener("load", function(event) { func(); } );
+            }
+            document.getElementsByTagName('head')[0].appendChild(s);
+        }
+    }
+
+    function runLoader() {
+        window.ddVessel = window.ddVessel || {};
+        var vs = window.ddVessel;
+        if (vs.autoStart !== false) {
+            vs.autoStart = true;
+        }
+        var host = typeof vs.host === 'string' && vs.host.length > 0 ? vs.host : "https://deepdive.zum.com";
+        addScript(host + "/js/dist/loader-4fd34d71a57c14767aebc42daaf313b4.js");
+    }
+
+    runLoader();
+}) ();

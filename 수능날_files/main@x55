@@ -1,0 +1,3 @@
+$(".ads-fixed01").append('\
+	<div class="ads-box"><a href="//ad.yonhapnews.co.kr/RealMedia/ads/click_lx.ads/www.yonhapnews.co.kr/main/1011849062/x55/OasDefault/gb_20210325_main_x55/gb_20210325_main_x55.html/31663031303135363630373033376230" target="_new" rel="nofollow">\
+	<img src="//img.yna.co.kr/ad/kr/20210325/20210325103648_ad.gif" border="0"></a></div>');

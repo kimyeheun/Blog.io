@@ -1,0 +1,346 @@
+/*  국문 상수 */
+var DOMAIN_INFO_ID = "1101";
+var LANG_TYPE = 'kr';
+
+//호스트명
+var HOSTNAME = window.location.hostname;
+
+var R_DOMAIN = "//r.yna.co.kr/";
+var RD_DOMAIN = "//rd.yna.co.kr/";
+var KR_URL = "//"+HOSTNAME;
+var KR_PC_URL = "//www.yna.co.kr";
+var KR_MOBILE_URL = "//m.yna.co.kr/";
+var KR_SRCH_URL = "//srch.yonhapnews.co.kr/";
+var KR_IMAGE_URL = "//img.yonhapnews.co.kr/";
+var SID = HOSTNAME;
+// 이미지 도메인
+var IMG_DOMAIN = "//img.yna.co.kr";
+var URS_DOMAIN = "http://yna.kr/";
+
+// API 주소
+var APS = "//ars.yna.co.kr/api/v2/";
+
+//현지 위치 정보를 셋팅한다.
+var CURRENT_LOCATION = "";
+
+(function(){
+    var thisUrl = window.location;
+    var hostName = thisUrl.hostname;
+    var thisFirst = '';
+    if( hostName.indexOf('qa') !== -1 || hostName.indexOf('qa-') !== -1){
+        thisFirst = "qa-";
+    }else if( hostName.indexOf('dev') !== -1 || hostName.indexOf('dev-') !== -1){
+        thisFirst = "dev-";
+    }
+
+    R_DOMAIN =  "//"+ thisFirst +"r.yna.co.kr/";
+    RD_DOMAIN =  "//"+ thisFirst +"rd.yna.co.kr/";
+    KR_URL =  "//"+ thisFirst +"www.yna.co.kr";
+    // IMG_DOMAIN = "//"+ thisFirst +"img.yna.co.kr"; 임시로 막아놈
+    // KR_IMAGE_URL = "//qa-img.yonhapnews.co.kr/";
+    APS = "//"+ thisFirst +"ars.yna.co.kr/api/v2/";
+    SID = thisFirst + "www.yna.co.kr";
+
+}());
+
+// 속보 티커
+var LIST_COUNT = "30";
+var LATESTNEWS = APS + 'sokbo?lang=' + LANG_TYPE.toUpperCase() + '&count=' + LIST_COUNT + '&minute=800';
+
+// 긴급 뉴스
+var URGENT_LANG_ID = "639";	// 긴급기사
+var URGENT_TOTAL = "N";
+var URGENTNEWS = APS + "edit?id=" + URGENT_LANG_ID + "&total=" + URGENT_TOTAL;
+
+// 흥 콘텐츠
+var HNG_API = APS + 'svc.hng';
+
+// 환율
+var COUNTRY_NAME = 'USD,JPY';
+var EXCHANGERATE_API = APS + 'svc.exchange?names=' + COUNTRY_NAME;
+
+// 회사채, 국고채, CD
+var CHARGE_API = APS + 'svc.cd';
+
+// 코스피(KOSPI), 코스닥(KOSDAQ) 지수
+var KOSPI_API = APS + 'svc.stock';
+
+// 키워드(keyword) API
+var KEYWORD_CNT = '5';
+var KEYWORD_ACNT = '5';
+var KEYWORD_TIME = '24';
+var KEYWORD_API = APS + 'svc.keyword?lang=' + LANG_TYPE.toUpperCase() + '&count=' + KEYWORD_CNT + '&acount=' + KEYWORD_ACNT + '&before=' + KEYWORD_TIME;
+
+// 상단메뉴에서 주요기사 레이어에 필요한 데이터를 조회
+var TOPMENU_API = APS + 'edit.count?rel=N&total=N&ids=';
+
+// host 값에 따른 도메인 정보 받아오기
+var DOMAININFO = APS + "svc.domain.info?host=";
+
+// key값으로 데이터 컨텐츠 조회(cid 여러개를 동시에)
+var CONTENTSAPI = APS + 'contents?ids=';
+
+// key값으로 데이터 컨텐츠 조회(1개)
+var CONTENTAPI = APS + 'content?id=';
+
+// 외국어 톱뉴스
+var FOREIGN_TOP_EN   = "4";
+var FOREIGN_TOP_JP   = "144";
+var FOREIGN_TOP_CK   = "249";
+var FOREIGN_TOP_AR   = "233";
+var FOREIGN_TOP_SP   = "219";
+var FOREIGN_TOP_FR   = "291";
+var FOREIGNNEWS = APS + "edit?id="+ FOREIGN_TOP_EN +","+ FOREIGN_TOP_JP +","+ FOREIGN_TOP_CK +","+ FOREIGN_TOP_AR +","+ FOREIGN_TOP_SP +","+ FOREIGN_TOP_FR +"&total=Y&body=Y";
+
+/* 편집형 데이터셋 히스토리 조회 */
+// 테마별 - 핫뉴스
+var HOTNEWS_ID = "659";
+var HISTORY_HOTNEWS = APS + "hedit.date?id=" + HOTNEWS_ID + "&body=Y&date=";
+// 테마별 - 톱뉴스
+var TOPNEWS_ID = "631";
+var HISTORY_TOPNEWS = APS + "hedit.date?id=" + TOPNEWS_ID + "&body=Y&date=";
+// 테마별 - 주요뉴스
+var HEADLINES_ID = "631,632,644";
+var HISTORY_HEADLINES = APS + "hedit.date?id=" + HEADLINES_ID + "&body=Y&date=";
+// 테마별 - 긴급뉴스(11.15 api 변경)
+var HISTORY_BREAKNEWS = APS + 'urgency.date?lang=' + LANG_TYPE.toUpperCase() + '&urgency=0,1,2&div=9001071&body=Y&date=';
+
+/* 리스트형 데이터셋 날짜별 조회(nstat?sdate=20171013&cate=bulletin&lang=KR&page=1&count=13) */
+// 날짜별 많이 본 뉴스 - 전체
+var MOSTVIEWED_ALL_ID = "1250";
+var MOSTVIEWED_ = APS + "nstat?cate=&body=Y&sdate=";
+// 날짜별 많이 본 뉴스 - 정치
+var MOSTVIEWED_POL_ID = "1251";
+var MOSTVIEWED_POLITICS = APS + "nstat?cate=politics&body=Y&sdate=";
+// 날짜별 많이 본 뉴스 - 산업/경제
+var MOSTVIEWED_ECO_ID = "1253";
+var MOSTVIEWED_ECONOMY = APS + "nstat?cate=economy&body=Y&sdate=";
+// 날짜별 많이 본 뉴스 - 사회
+var MOSTVIEWED_SOC_ID = "1270";
+var MOSTVIEWED_SOCIETY = APS + "nstat?cate=society&body=Y&sdate=";
+// 날짜별 많이 본 뉴스 - it/과학
+var MOSTVIEWED_IT_ID = "1370";
+var MOSTVIEWED_IT = APS + "nstat?cate=it&body=Y&sdate=";
+// 날짜별 많이 본 뉴스 - 세계
+var MOSTVIEWED_INT_ID = "1274";
+var MOSTVIEWED_INTERNATIONAL = APS + "nstat?cate=international&body=Y&sdate=";
+// 날짜별 많이 본 뉴스 - 스포츠
+var MOSTVIEWED_SPO_ID = "1272";
+var MOSTVIEWED_SPORTS = APS + "nstat?cate=sports&body=Y&sdate=";
+// 날짜별 많이 본 뉴스 - 연예
+var MOSTVIEWED_ENT_ID = "1273";
+var MOSTVIEWED_ENTERTAINMENT = APS + "nstat?cate=entertainment&body=Y&sdate=";
+// 날짜별 많이 본 뉴스 - 문화
+var MOSTVIEWED_CUL_ID = "1371";
+var MOSTVIEWED_CULTURE = APS + "nstat?cate=culture&body=Y&sdate=";
+// 날짜별 최신영상 리스트
+var VIDEO_ID = '1075';
+var VIDEO_HISTORY_LIST = APS + "articlelink?body=Y&id=" + VIDEO_ID + "&date=";
+
+// #D 본문 우측 기사 3건
+var DIGITAL_MAJOR_ID = "1231";
+var DIGITAL_MAJOR_COUNT = "3";
+var DIGITAL_MAJOR = APS + "articlelink?id=" + DIGITAL_MAJOR_ID + "&count=" + DIGITAL_MAJOR_COUNT;
+
+// 화보
+var VOD_CTYPE = "PT";
+var VOD_COUNT = "1";
+var VOD_RCOUNT = "500";
+var VOD_GALLERY = APS + "issueex?recommend=Y&ctype=" + VOD_CTYPE + "&count=" + VOD_COUNT+ "&rcount=" + VOD_RCOUNT + "&all=Y";
+
+// 화보 리스트 기사 클릭 시 해당 기사 목록
+var VOD_GALLERY_LIST = APS + "issue.contents?id=";
+
+// 메인 이슈컷
+var MAIN_ISSUE_CUT_ID = "1233";
+var MAIN_ISSUE_LIST_COUNT = "2";
+var MAIN_ISSUE_CUT = APS + "articlelink?id=" + MAIN_ISSUE_CUT_ID + "&count=" + MAIN_ISSUE_LIST_COUNT;
+
+// 메인 시론
+var MAIN_ADVISORY_ID = "938";
+var MAIN_ADVISORY_LIST_COUNT = "3";
+var MAIN_ADVISORY = APS + "articlelink?id=" + MAIN_ADVISORY_ID + "&count=" + MAIN_ADVISORY_LIST_COUNT;
+
+// 메인 통통영상
+var MAIN_TONG_NEWS_ID = "1058";
+var MAIN_TONG_NEWS = APS + "edit?id=" + MAIN_TONG_NEWS_ID + "&total=N";
+
+// 비주얼 아카이브
+var VISUAL_ARCHIVE_TONG_ID = '1235';
+var VISUAL_ARCHIVE_TONG = APS + 'articlelink?count=1&id=' + VISUAL_ARCHIVE_TONG_ID;
+
+// 비주얼 포토홈 인덱스 상단 슬라이드
+var VISUAL_PHOTO_DATA = '954:1%7C1321:1%7C1290:1%7C1291:1%7C1292:1%7C1322:1%7C1293:1%7C1294:1%7C1295:1%7C1296:1%7C';
+var VISUAL_PHOTO_INDEX = APS + 'edit.count?rel=N&total=N&body=N&ids=' + VISUAL_PHOTO_DATA;
+
+var DYNAMIC_ARTICLE = APS + 'articlelink.start';
+// #D 메인
+var DIGITAL_INDEX = DYNAMIC_ARTICLE + '?body=Y&id=1230&before=60&total=Y&page=';
+// 북한 그래픽
+var NK_GRAPHIC = DYNAMIC_ARTICLE + '?id=1034&before=60&total=Y&page=';
+
+// 본문 오늘의 주요뉴스
+var TODAY_NEWS_ID = "631,632";
+var TODAY_NEWS_LIST_COUNT = "9";
+var TODAY_NEWS = APS + "edit?id=" + TODAY_NEWS_ID + "&total=Y&count=" + TODAY_NEWS_LIST_COUNT;
+
+// 로그아웃
+var MEMBER_LOGOUT = "//uas.yna.co.kr/member/api/logout";
+
+// 메인 지방지
+var LOCAL_PAPER = APS + "svc.rsn";
+
+// 보도자료 API
+var PRESS_API = APS + 'list?cattr=R&total=Y';
+
+// 지역별 현재 날씨 API
+var WEATHER_NOW = APS + 'weather?type=now';
+
+// 기사 속성으로 데이터 가져오는 API
+var LISTFIXED = APS + 'list.fixed';
+
+// weather/index 우측 날씨 뉴스 4건
+var WEATHER_NEWS_BEFORE = '55';
+var WEATHER_NEWS_DIV = '0801002,0607002,0607003,0607004,0607006,9001117';
+var WEATHER_NEWS_URGENCY = '0,1,2,3';
+var WEATHER_NEWS_CATTR = 'A,X';
+var WEATHER_NEWS = LISTFIXED + '?cattr=' + WEATHER_NEWS_CATTR + '&before=' + WEATHER_NEWS_BEFORE + '&lang=KR&div1=' + WEATHER_NEWS_DIV + '&count=4&urgency=' + WEATHER_NEWS_URGENCY;
+
+// weather/index 우측 날씨 영상 4건
+var WEATHER_VIDEO_CATTR= 'M';
+var WEATHER_VIDEO = LISTFIXED + '?cattr=' + WEATHER_VIDEO_CATTR + '&before=' + WEATHER_NEWS_BEFORE + '&lang=KR&div1=' + WEATHER_NEWS_DIV + '&count=4&urgency=' + WEATHER_NEWS_URGENCY;
+
+// 전국 하위리스트 최신 포토 4건
+var LATEST_PHOTO_BEFORE = '30';
+var LATEST_PHOTO = LISTFIXED + '?cattr=P&lang=KR&count=4&before=' + LATEST_PHOTO_BEFORE;
+
+// 많이 본 화보 콘텐츠
+var LATESTGALAPI = APS + 'nstat.I.recent?ctype=PT&sbefore=24&dbefore=72&exidiv=I060100028&lang='+LANG_TYPE.toUpperCase()+'&total=N&body=Y&count=9&page=1';
+
+// 많이 본 뉴스 데이터셋
+var MOST_BODY = "Y";
+var MOST_LANG = LANG_TYPE.toUpperCase();
+var MOST_CATTR = "A";
+var MOST_SBEFORE = "24";
+var MOST_DBEFORE = "24";
+var MOST_POLITICS = "politics";                     // 정치
+var MOST_ECONOMY = "economy";                       // 산업/경제
+var MOST_SOCIETY = "society";                       // 사회
+var MOST_LOCAL = "local";                           // 전국
+var MOST_SPORTS = "sports";                         // 스포츠
+var MOST_ENTERTAINMENT = "entertainment,culture";           // 연예/문화
+var MOST_INTERNATIONAL = "international";           //세계
+var MOST_NSTATRECENT = APS + "nstat.recent?lang=" + MOST_LANG;
+
+//세계 인민망 주요뉴스
+var INMINMANG = APS + 'svc.inminmang';
+// 세계>중국 신화망 주요뉴스
+var XINHAUWANG = APS + 'svc.xinhuanet';
+
+// 통통영상 각 섹션별 기사 데이터셋
+var TONG_KPOP = "1236";
+var TONG_MOVIE = "1237";
+var TONG_ENTERTAINMENT = "1238";
+var TONG_REVIEW = "1239";
+var TONG_INTERVIEW = "2271";
+
+// gnb 메뉴의 섹션별 탑1, 탑2, 주요기사 데이터셋
+var POLITICS_TOP = "669:1|671:1|670:1-5";		// 정치 톱,주요뉴스 리스트(1,1,5)
+var NK_TOP = "990:1|992:1-3|2558:1-5";			// 북한 톱,주요뉴스 리스트(1,3,5)
+var ECONOMY_TOP = "690:1|691:1|693:1-5";		// 산업,경제 톱,주요뉴스 리스트(1,1,5)
+var STOCK_TOP = "710:1|712:1|711:1-5";			// 금융,증권 톱,주요뉴스 리스트(1,1,5)
+var IT_TOP = "719:1|721:1|720:1-5";				// 과학, IT 톱,주요뉴스 리스트
+var SOCIETY_TOP = "730:1|732:1|731:1-5";		// 사회 톱,주요뉴스 리스트
+var LOCAL_TOP = "742:1|747:1|743:1-5";			// 전국 톱,주요뉴스 리스트
+var ENTERTAINMENT_TOP = "806:1|808:1|809:1|807:1-5";	// 연예 톱,주요뉴스 리스트(1,1,1,5)
+var CULTURE_TOP = "816:1|818:1|817:1-5";		// 문화 톱,주요뉴스 리스트(1,1,5)
+var SPORTS_TOP = "827:1|829:1|830:1|828:1-5";		// 스포츠 톱,주요뉴스 리스트(1,1,1,5)
+var INTERNATIONAL_TOP = "870:1|872:1|871:1-5";	// 세계 톱,주요뉴스 리스트(1,1,5)
+var COMPATRIOT_TOP = "918:1|920:1|919:1-5";		// 한민족 톱,주요뉴스 리스트(1,1,5)
+var TRAVEL_FESTIVAL_TOP = "926:1|927:1";	// 여행, 축제 톱 리스트(1,1)
+var VISUALNEWS_TOP = "652:1|630:1|654:1|653:1";	// 비주얼뉴스 리스트(포토무비, 메인영상, 그래픽, 인터랙티브)
+
+// 1153.js
+var KR_LOGO_IMAGE = KR_IMAGE_URL + "basic/svc/00_ko/home/yonhapnews_logo_600x600.png";
+var KR_NAME = "연합뉴스";
+var YNA_FACEBOOK = "https://www.facebook.com/yonhap";
+var YNA_FACEBOOK_VIDEO = "https://www.facebook.com/yonhapvideo/";
+var YNA_TWITTER = "https://twitter.com/yonhaptweet";
+var YNA_INSTAGRAM = "https://www.instagram.com/yonhap_news/";
+var YNA_GOOGLE_PLUS = "https://plus.google.com/+yonhapnews";
+var YNA_KAKAO_STORY = "https://story.kakao.com/ch/yonhapmedia";
+var YNA_FACEBOOKVIDEO = "https://www.facebook.com/yonhapvideo/";
+var YNA_YOUTUBE = "https://www.youtube.com/channel/UCHzW_7Mf8G0JxP4b0LoAd7A";
+var YNA_SOCCERBOT = "http://soccerbot.yna.co.kr/";
+var YNA_VR = "https://vr.yonhapnews.co.kr/";
+
+// kr_login.js
+var LOGIN_COOKIE_MEM_CODE = 'YNA_MEMBER_CODE';
+var LOGIN_COOKIE_HOME_MEM_CODE = 'YNA_HOME_MEMBER_CODE';
+
+// kr_PredictiveSearch.js
+var JQUERY_SRC = RD_DOMAIN + 'www/home/v01/js/img/jquery-1.12.4.js';
+
+
+
+
+
+
+
+/* 북한 관련 */
+
+// 북한 속보
+var NK_TEAKER_ID = '1010';
+var NK_LATESTNEWS =  APS + "articlelink?id=" + NK_TEAKER_ID + "&total=N&body=N&count=15&before=7&lang=" + LANG_TYPE.toUpperCase();
+
+// 북한 날씨
+var WEATHER_LAND_NORTH = APS + 'weather?type=land_north';
+var WEATHER_NOW_NORTH = APS + 'weather?type=nowcast_north';
+
+// 북한 날씨 영상 최신 1건
+var NK_WEATHER_VIDEO_ID = '1031';
+var NK_WEATHER_VIDEO_API = APS + 'articlelink?id=' + NK_WEATHER_VIDEO_ID + '&body=N&total=N&count=1';
+
+//북한 인물검색
+var NK_PEOPLE_URL = APS + "nk.peopinfo?id=";
+var NK_PEOPLE_CALLBACK = "&callback=nk_people.detailCallback";
+
+// 북한 인물뉴스
+var NK_PEOPLE_DIV = '1008003';
+var NK_PEOPLE_CATTR = 'A';
+var NK_PEOPLE_NEWS = APS + 'list?div=' + NK_PEOPLE_DIV + '&ctype=' + LANG_TYPE.toUpperCase() + '&cattr=' + NK_PEOPLE_CATTR;
+
+// 북한 용어사전
+var NK_VOC_LIST = APS + "nk.voclist";
+
+// 북한 용어사전 상세
+var NK_VOC_INFO = APS + "nk.vocinfo";
+// 북한 외국어 최신뉴스
+var NK_FOREIGN_LATESTNEWS_EN = '31';
+var NK_FOREIGN_LATESTNEWS_CK = '271';
+var NK_FOREIGN_LATESTNEWS_JP = '137';
+var NK_FOREIGN_LATESTNEWS_AR = '513';
+var NK_FOREIGN_LATESTNEWS_SP = '414';
+var NK_FOREIGN_LATESTNEWS_FR = '406';
+var NK_FOREIGN_LATESTNEWS = APS + 'articlelink?count=1&id=';
+
+// 북한 학술 연구
+var BBS_URL = "//bbs.yna.co.kr/";
+
+// 북한 메인 학술 연구
+var BBS_CONFERENCE = APS + "nk.bbs.conference";
+
+
+
+
+
+
+/* 출력 메세지 */
+
+var SEARCH_NULL = "검색어를 입력하세요.";
+
+//날씨 관심 지역 문구
+var WEATHER_AREA = "관심 지역이 설정되었습니다.";
+
+//검색어 길이 초과
+var SEARCH_LENGTH_TEXT = "검색어 최대길이는 40자 입니다.";
